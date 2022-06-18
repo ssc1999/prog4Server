@@ -5,8 +5,8 @@
 
 typedef struct {
 	int idBiblioteca; // hay que poner aquí el id???
-	char marca[40];
-	char modelo[40];
+	char marca[15];
+	char modelo[15];
 	boolean automatico;
 	int plazas;
 	int anyoFabricacion;

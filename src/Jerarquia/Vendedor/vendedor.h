@@ -4,9 +4,9 @@
 #define VENDEDOR_H_
 
 typedef struct {
-	char nombre[40]; // hay que poner aquí el id???
-	char dni[40];
-	char email[40];
+	char nombre[25]; // hay que poner aquí el id???
+	char dni[9];
+	char email[25];
 	float sueldo;
 	int numVentas;
 } Vendedor;

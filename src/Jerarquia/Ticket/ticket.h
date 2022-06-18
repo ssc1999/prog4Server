@@ -5,9 +5,9 @@
 
 typedef struct {
 	int idTicket; // hay que poner aquí el id???
-	char nomComprador[40];
-	char nomCoche[40];
-	char fechaCompra[40];
+	char nomComprador[25];
+	char nomCoche[40]; // marca modelo
+	char fechaCompra[10];
 } Ticket;
 
 //void anadirBiblioteca(sqlite3 *db, int result, Biblioteca biblioteca);
