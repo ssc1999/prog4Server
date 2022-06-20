@@ -18,6 +18,8 @@ int insertTicket(sqlite3* db, char nomComprador[25], char nomCoche[40], char fec
 
 int deleteTickets(sqlite3* db, char nomComprador[25]);
 
-int imprimirTickets(sqlite3* db, char nomComprador[25]);
+//int imprimirTickets(sqlite3* db, char nomComprador[25]);
+
+// 1. selct 2. delete 3. insert 4. update
 
 #endif
