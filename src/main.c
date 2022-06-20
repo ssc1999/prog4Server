@@ -7,6 +7,8 @@
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 6000
 
+void menu(SOCKET comm_socket);
+
 int main(int argc, char *argv[]) {
 
 //	sqlite3 *db;
@@ -15,7 +17,6 @@ int main(int argc, char *argv[]) {
 //	if (result != SQLITE_OK) {
 //		LOG_PRINT("Error opening database\n");
 //	}
-	
 
 
 	WSADATA wsaData;
@@ -86,14 +87,61 @@ int main(int argc, char *argv[]) {
 	printf("Waiting for incoming commands from client... \n");
 
 	//////////////////////////////////////////
+//	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+//	printf(recvBuff);
+//	strcpy(sendBuff, recvBuff);
+//	send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
-	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-	printf("Command received: %s \n", recvBuff);
 
+
+	menu(comm_socket);
+	printf("ha salido del menu");
 
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);
 	WSACleanup();
 
 	return 0;
+}
+
+void menu(SOCKET comm_socket)
+{
+	char sendBuff[512], recvBuff[512];
+	int opcion;
+		do {
+			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+			opcion = atoi(recvBuff);
+			if(strcmp(recvBuff, "1")){
+				printf("Ha entrado");
+				strcpy(sendBuff, "Hola");
+				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+			}
+//			switch(opcion){
+//				case 1:
+//					//mandar instruccion mostrarCoches al servidor
+//					printf("Ha entrado");
+//					strcpy(sendBuff, "Hola");
+//					send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+//					break;
+//				case 2 :
+//					//mandar instruccion misCoches al servidor
+//
+//					break;
+//				case 3 :
+//					//mandar instruccion misTickets al servidor
+//
+//					break;
+//				case 4:
+//					//mandar instruccion miPerfil al servidor
+//
+//					break;
+//				case 5:
+//					//mandar instruccion salir
+//					printf("Servidor finalizado");
+//					break;
+//				default:
+//					printf("Error, el parametro de entrada no coincide.");
+//					break;
+//			}
+		} while (opcion != 5);
 }

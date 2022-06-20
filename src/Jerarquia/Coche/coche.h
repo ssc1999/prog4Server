@@ -4,6 +4,7 @@
 #define COCHE_H_
 
 typedef struct {
+	char matricula[7];
 	char marca[15];
 	char modelo[15];
 	int automatico;

@@ -9,6 +9,7 @@
 //#include "../../Log/logger.h"
 
 void imprimirCoche(Coche coche) {
+	printf("Matrícula: %s\n", coche.matricula);
 	printf("Marca: %s\n", coche.marca);
 	printf("Modelo: %s\n", coche.modelo);
 	if(coche.automatico == 0){
