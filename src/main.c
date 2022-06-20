@@ -160,37 +160,6 @@ int main(int argc, char *argv[])
 			strcpy(recvBuff, contrasenya);
 			send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 		}
-		// if (strcmp(recvBuff, "exit") == 0)
-		// {
-			
-		// }
-		// switch (opcion)
-		// {
-		// case 1:
-		// 	// Inicio de sesion
-		// 	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-		// 	strcpy(usuario, recvBuff);
-		// 	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-		// 	strcpy(contrasenya, recvBuff);
-
-		// 	// los devolvemos para comprobar que llegan
-		// 	strcpy(recvBuff, usuario);
-		// 	send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-		// 	strcpy(recvBuff, contrasenya);
-		// 	send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-		// 	break;
-		// case 2:
-		// 	// Registro
-
-		// 	break;
-		// case 3:
-		// 	// Salir
-		// 	printf("Servidor finalizado");
-		// 	break;
-		// default:
-		// 	printf("Error, el parametro de entrada no coincide.");
-		// 	break;
-		// }
 	} while (strcmp(opcion,"exit") != 0);
 
 	// CLOSING the sockets and cleaning Winsock...
