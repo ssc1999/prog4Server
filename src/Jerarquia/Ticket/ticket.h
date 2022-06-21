@@ -5,7 +5,7 @@
 
 typedef struct {
 	char nomComprador[20];
-	char nombreUsuario[20];
+	char nomUsuario[20];
 	char matricula[20];
 	char fechaCompra[10];
 } Ticket;
