@@ -231,10 +231,11 @@
 // 	return vendedores;
 // }
 
-int updateCoche(sqlite3* db, char marca[15], char modelo[15], int automatico, int plazas, int anyoFabricacion);
-// pasarle solo la referencia del coche (matr�cula)
 
-int insertTicket(sqlite3* db, char nomComprador[25], char nomCoche[40], char fechaCompra[10]);
+int updateCoche(sqlite3* db, char matricula[10], char usuario[10]){}
+	// para cuando lo compremos
+
+int insertTicket(sqlite3* db, char usuario[20], char matricula[40], char fechaCompra[10]){}
 
 int deleteTickets(sqlite3* db, char usuario[20]) {
 	sqlite3_stmt *stmt;

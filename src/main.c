@@ -115,6 +115,19 @@ int main(int argc, char *argv[])
 					strcpy(opcion2, recvBuff);
 					if (strcmp(opcion2, "comprarCoches") == 0)
 					{
+						//solicitar todos los coches a la bd
+						//guardar array de coches que devuelve la bd
+
+						//mandar numero de coches al cliente
+
+						//mandar coches al cliente con un for
+
+						//recibir matricula
+						//recibir usuario
+						//recibir nombreComprador
+						//recibir fechaCompra
+						//crear ticket y meterlo en la bd
+
 						/* code */
 					}
 					if (strcmp(opcion2, "misCoches") == 0)

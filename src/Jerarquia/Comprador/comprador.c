@@ -19,3 +19,8 @@ int login(sqlite3* db, char usuario[20], char contrasenya[20]){
 	int result = loginBD(db, usuario, contrasenya);
 	return result;
 }
+
+int comprarCoche(sqlite3 *db, char matricula[20], char usuario){
+	//metodo BD de cambiar atributo en coche 
+	//metodo de crear ticket
+}

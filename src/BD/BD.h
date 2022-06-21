@@ -12,9 +12,9 @@ Coche* getCoches(sqlite3* db);
 Comprador* getCompradores(sqlite3* db);
 Vendedor* getVendedores(sqlite3* db);
 
-int updateCoche(sqlite3* db, char marca[15], char modelo[15], int automatico, int plazas, int anyoFabricacion);
+int updateCoche(sqlite3* db, char matricula[10], char usuario[10]);// para cuando lo compremos
 
-int insertTicket(sqlite3* db, char usuario[20], char nomCoche[40], char fechaCompra[10]);
+int insertTicket(sqlite3* db, char usuario[20], char matricula[40], char fechaCompra[10]);
 
 int deleteTickets(sqlite3* db, char usuario[20]);
 
