@@ -10,6 +10,7 @@
 
 void imprimirTicket(Ticket ticket) {
 	printf("Nombre comprador: %s\n", ticket.nomComprador);
-	printf("Nombre coche: %s\n", ticket.matricula);
+	printf("Nombre usuario: %s\n", ticket.nomUsuario);
+	printf("Matrícula: %s\n", ticket.matricula);
 	printf("Fecha compra: %s\n", ticket.fechaCompra);
 }
