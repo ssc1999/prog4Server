@@ -1,7 +1,7 @@
 #ifndef BD_BD_H_
 #define BD_BD_H_
 
-#include "sqlite3.h"
+
 #include "../Jerarquia/Coche/coche.h"
 #include "../Jerarquia/Comprador/comprador.h"
 #include "../Jerarquia/Ticket/ticket.h"
@@ -14,9 +14,12 @@ Vendedor* getVendedores(sqlite3* db);
 
 int updateCoche(sqlite3* db, char marca[15], char modelo[15], int automatico, int plazas, int anyoFabricacion);
 
-int insertTicket(sqlite3* db, char nomComprador[25], char nomCoche[40], char fechaCompra[10]);
+int insertTicket(sqlite3* db, char usuario[20], char nomCoche[40], char fechaCompra[10]);
 
-int deleteTickets(sqlite3* db, char nomComprador[25]);
+int deleteTickets(sqlite3* db, char usuario[20]);
+
+int loginBD(sqlite3 *db, char usuario[], char contrasenya[20]);
+Coche* getMisCoches(sqlite3* db, char usuario[20]);
 
 //int imprimirTickets(sqlite3* db, char nomComprador[25]);
 

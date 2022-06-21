@@ -13,5 +13,5 @@ void imprimirVendedor(Vendedor vendedor) {
 	printf("Dni: %s\n", vendedor.dni);
 	printf("Email: %s\n", vendedor.email);
 	printf("Sueldo: %f\n", vendedor.sueldo);
-	printf("Número de ventas: %f\n", vendedor.numVentas);
+	printf("Numero de ventas: %f\n", vendedor.numVentas);
 }

@@ -14,3 +14,8 @@ void imprimirComprador(Comprador comprador) {
 	printf("Email: %s\n", comprador.email);
 	printf("Cuenta bancaria: %s\n", comprador.cuentaBancaria);
 }
+
+int login(sqlite3* db, char usuario[20], char contrasenya[20]){
+	int result = loginBD(db, usuario, contrasenya);
+	return result;
+}

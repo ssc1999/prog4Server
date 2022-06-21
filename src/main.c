@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <winsock2.h>
 #include <math.h>
+#include "BD/sqlite3.h"
+#include "BD/BD.h"
+#include "Jerarquia/Comprador/comprador.h"
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 6000
@@ -11,14 +14,6 @@ void menu(SOCKET comm_socket);
 
 int main(int argc, char *argv[])
 {
-
-	//	sqlite3 *db;
-	//
-	//	int result = sqlite3_open("BD/DB.db", &db);
-	//	if (result != SQLITE_OK) {
-	//		LOG_PRINT("Error opening database\n");
-	//	}
-
 	WSADATA wsaData;
 	SOCKET conn_socket;
 	SOCKET comm_socket;
@@ -26,6 +21,12 @@ int main(int argc, char *argv[])
 	struct sockaddr_in client;
 	char sendBuff[512], recvBuff[512];
 	char opcion[20], opcion2[20], usuario[20], contrasenya[20];
+	sqlite3 *db;
+
+	int result = sqlite3_open("BD/BD.sqlite", &db);
+	if (result != SQLITE_OK) {
+		printf("Error opening database\n");
+	}
 
 	printf("\nInitialising Winsock...\n");
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
@@ -92,30 +93,20 @@ int main(int argc, char *argv[])
 	// SEND and RECEIVE data (CLIENT/SERVER PROTOCOL)
 	printf("Waiting for incoming commands from client... \n");
 
-	//////////////////////////////////////////
-	//	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-	//	printf(recvBuff);
-	//	strcpy(sendBuff, recvBuff);
-	//	send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-
 	do
 	{
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		strcpy(opcion, recvBuff);
-		printf("%s \n", recvBuff);
 		
 		if (strcmp(recvBuff, "login") == 0)
 		{
-			printf("entra en el if \n");
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(usuario, recvBuff);
-			printf("%s \n", usuario);
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(contrasenya, recvBuff);
-			printf("%s \n", contrasenya);
 
 			//dentro del if llamamos al metodo bd con los dos atributos, si ok, dpm
-			if(strcmp(usuario, "serch") == 0 && strcmp(contrasenya, "123") == 0){
+			if(login(db,usuario, contrasenya) == 1){
 				strcpy(sendBuff, "correcto");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
@@ -140,13 +131,12 @@ int main(int argc, char *argv[])
 					}
 				} while (strcmp(opcion2, "cerrarSesion") == 0);
 			}else{
-				strcpy(sendBuff, "erroneo");
+				strcpy(sendBuff, "erroneos");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 			}
 		}
 		if (strcmp(recvBuff, "register") == 0)
 		{
-			printf("entra en el if \n");
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(usuario, recvBuff);
 			printf("%s \n", usuario);
@@ -167,27 +157,4 @@ int main(int argc, char *argv[])
 	WSACleanup();
 
 	return 0;
-	// do {
-	// 	recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-	// 	opcion = atoi(recvBuff);
-	// 	switch(opcion){
-	// 		case 1:
-	// 			//mandar instruccion mostrarCoches al servidor
-
-	// 			strcpy(sendBuff, "Hola");
-	// 			send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-	// 			break;
-	// 		case 2 :
-	// 			//mandar instruccion misCoches al servidor
-
-	// 			break;
-	// 		case 3 :
-	// 			//mandar instruccion misTickets al servidor
-	// 			printf("Servidor finalizado");
-	// 			break;
-	// 		default:
-	// 			printf("Error, el parametro de entrada no coincide.");
-	// 			break;
-	// 	}
-	// } while (opcion != 5);
 }

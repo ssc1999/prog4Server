@@ -4,8 +4,9 @@
 #define TICKET_H_
 
 typedef struct {
-	char nomComprador[25];
-	char nomCoche[40]; // marca modelo
+	char nomComprador[20];
+	char nombreUsuario[20];
+	char matricula[20];
 	char fechaCompra[10];
 } Ticket;
 
