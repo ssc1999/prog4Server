@@ -133,7 +133,7 @@
 // 	char cuentaBancaria[20];
 
 //     int i = 0;
-// 	char sql[] = "select nombre, dni, email, cuentaBancaria, usuario, contrasenya from usuario where tipo = 0; 
+// 	char sql[] = "select nombre, dni, email, cuentaBancaria, usuario, contrasenya from usuario where tipo = 0;
 
 // 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
 // 	if (result != SQLITE_OK) {
@@ -187,7 +187,7 @@
 // 	int numVentas;
 
 //     int i = 0;
-// 	char sql[] = "select nombre, dni, email, sueldo, numVentas, usuario, contrasenya from usuario where tipo = 1"; 
+// 	char sql[] = "select nombre, dni, email, sueldo, numVentas, usuario, contrasenya from usuario where tipo = 1";
 
 // 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
 // 	if (result != SQLITE_OK) {
@@ -231,19 +231,97 @@
 // 	return vendedores;
 // }
 
+// SELECT DONE
+int login(sqlite3 *db, char usuario[20], char contrasenya[20])
+{
+	sqlite3_stmt *stmt;
+	char usuarioTemp[20], contrasenyaTemp[20];
+	int tipo;
 
-int updateCoche(sqlite3* db, char matricula[10], char usuario[10]){}
-	// para cuando lo compremos
+	char sql[] = "select usuario, contrasenya, tipo from usuario where usuario = ?";
 
-int insertTicket(sqlite3* db, char usuario[20], char matricula[40], char fechaCompra[10]){}
+	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	if (result != SQLITE_OK)
+	{
+		printf("Error preparing statement (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
 
-int deleteTickets(sqlite3* db, char usuario[20]) {
+	printf("SQL query prepared (SELECT)\n");
+
+	result = sqlite3_bind_text(stmt, 1, usuario, strlen(usuario), SQLITE_STATIC);
+	if (result != SQLITE_OK)
+	{
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	result = sqlite3_step(stmt);
+	if (result == SQLITE_ROW)
+	{
+		strcpy(usuarioTemp, (char *)sqlite3_column_text(stmt, 0));
+		strcpy(contrasenyaTemp, (char *)sqlite3_column_text(stmt, 1));
+		tipo = sqlite3_column_int(stmt, 2);
+	}
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK)
+	{
+		printf("Error finalizing statement (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return result;
+	}
+
+	printf("Prepared statement finalized (SELECT)\n");
+
+	if (strcmp(usuarioTemp, usuario) == 0 && strcmp(contrasenyaTemp, contrasenya) == 0)
+	{
+		printf("Usuario y contrasenya coinciden");
+		return tipo;
+	}
+
+	return 0;
+}
+
+// UPDATE
+int updateCoche(sqlite3 *db, char matricula[10], char usuario[10])
+{
+}
+
+// INSERT
+int insertTicket(sqlite3 *db, char usuario[20], char matricula[40], char fechaCompra[10])
+{
+}
+
+// SELECT
+Coche *getCoches(sqlite3 *db, char usuario[20])
+{
+}
+// SELECT
+Ticket *getTickets(sqlite3 *db, char usuario[20])
+{
+}
+// INSERT
+int registrarComprador(sqlite3 *db, char usuario[20], char contrasenya[20], char nombre[25], char dni[9], char email[25], char cuentaBancaria[20])
+{
+}
+// INSERT
+int registrarVendedor(sqlite3 *db, char usuario[20], char contrasenya[20], char nombre[25], char dni[9], char email[25], float sueldo, int numVentas)
+{
+}
+
+// DELETE
+int deleteTickets(sqlite3 *db, char usuario[20])
+{
 	sqlite3_stmt *stmt;
 
 	char sql[] = "delete * from comprador where (usuario) values (?)"; // where comprador == ?
 
-	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ;
-	if (result != SQLITE_OK) {
+	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+	if (result != SQLITE_OK)
+	{
 		printf("Error preparing statement (DELETE)\n");
 		printf("%s\n", sqlite3_errmsg(db));
 		return result;
@@ -252,21 +330,24 @@ int deleteTickets(sqlite3* db, char usuario[20]) {
 	printf("SQL query prepared (DELETE)\n");
 
 	result = sqlite3_bind_text(stmt, 1, usuario, strlen(usuario), SQLITE_STATIC);
-	if (result != SQLITE_OK) {
+	if (result != SQLITE_OK)
+	{
 		printf("Error binding parameters\n");
 		printf("%s\n", sqlite3_errmsg(db));
 		return result;
 	}
 
 	result = sqlite3_step(stmt);
-	if (result != SQLITE_DONE) {
+	if (result != SQLITE_DONE)
+	{
 		printf("Error deleting data\n");
 		printf("%s\n", sqlite3_errmsg(db));
 		return result;
 	}
 
 	result = sqlite3_finalize(stmt);
-	if (result != SQLITE_OK) {
+	if (result != SQLITE_OK)
+	{
 		printf("Error finalizing statement (DELETE)\n");
 		printf("%s\n", sqlite3_errmsg(db));
 		return result;
@@ -277,48 +358,4 @@ int deleteTickets(sqlite3* db, char usuario[20]) {
 	return SQLITE_OK;
 }
 
-int loginBD(sqlite3 *db, char usuario[20], char contrasenya[20]){
-	sqlite3_stmt *stmt;
-	char usuarioTemp[20], contrasenyaTemp[20];
-
-	char sql[] = "select usuario, contrasenya from usuario where usuario = ?";
-
-	int result = sqlite3_prepare_v2(db, sql, strlen(sql)+1, &stmt, NULL) ;
-	if (result != SQLITE_OK) {
-		printf("Error preparing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
-		return result;
-	}
-
-	printf("SQL query prepared (SELECT)\n");
-
-	result = sqlite3_bind_text(stmt, 1, usuario, strlen(usuario), SQLITE_STATIC);
-	if (result != SQLITE_OK) {
-		printf("Error binding parameters\n");
-		printf("%s\n", sqlite3_errmsg(db));
-		return result;
-	}
-
-	result = sqlite3_step(stmt);
-	if (result == SQLITE_ROW) {
-		strcpy(usuarioTemp, (char*) sqlite3_column_text(stmt, 0));
-		strcpy(contrasenyaTemp, (char*) sqlite3_column_text(stmt, 1));
-	}
-
-	result = sqlite3_finalize(stmt);
-	if (result != SQLITE_OK) {
-		printf("Error finalizing statement (SELECT)\n");
-		printf("%s\n", sqlite3_errmsg(db));
-		return result;
-	}
-
-	printf("Prepared statement finalized (SELECT)\n");
-
-	if(strcmp(usuarioTemp,usuario) == 0 && strcmp(contrasenyaTemp, contrasenya) ==0) {
-		printf("Usuario y contrasenya coinciden");
-		return 1;
-	}
-
-	return 0;
-}
-//int imprimirTickets(sqlite3* db, char nomComprador[25]);
+// int imprimirTickets(sqlite3* db, char nomComprador[25]);

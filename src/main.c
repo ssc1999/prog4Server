@@ -20,11 +20,14 @@ int main(int argc, char *argv[])
 	struct sockaddr_in server;
 	struct sockaddr_in client;
 	char sendBuff[512], recvBuff[512];
-	char opcion[20], opcion2[20], usuario[20], contrasenya[20];
+	char opcion[20], opcion2[20], usuario[20], char contrasenya[20], char nombre[25], dni[9], char email[25], char cuentaBancaria[20];
+	float sueldo;
+	int numVentas;
 	sqlite3 *db;
 
 	int result = sqlite3_open("BD/BD.sqlite", &db);
-	if (result != SQLITE_OK) {
+	if (result != SQLITE_OK)
+	{
 		printf("Error opening database\n");
 	}
 
@@ -97,36 +100,38 @@ int main(int argc, char *argv[])
 	{
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		strcpy(opcion, recvBuff);
-		
-		if (strcmp(recvBuff, "login") == 0)
+
+		if (strcmp(opcion, "login") == 0)
 		{
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(usuario, recvBuff);
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(contrasenya, recvBuff);
 
-			//dentro del if llamamos al metodo bd con los dos atributos, si ok, dpm
-			if(login(db,usuario, contrasenya) == 1){
-				strcpy(sendBuff, "correcto");
+			// COMPRADOR
+			if (login(db, usuario, contrasenya) == 1)
+			{
+				strcpy(sendBuff, "comprador");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
-				do{
+				do
+				{
 					recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 					strcpy(opcion2, recvBuff);
 					if (strcmp(opcion2, "comprarCoches") == 0)
 					{
-						//solicitar todos los coches a la bd
-						//guardar array de coches que devuelve la bd
+						// solicitar todos los coches a la bd
+						// guardar array de coches que devuelve la bd
 
-						//mandar numero de coches al cliente
+						// mandar numero de coches al cliente
 
-						//mandar coches al cliente con un for
+						// mandar coches al cliente con un for
 
-						//recibir matricula
-						//recibir usuario
-						//recibir nombreComprador
-						//recibir fechaCompra
-						//crear ticket y meterlo en la bd
+						// recibir matricula
+						// recibir usuario
+						// recibir nombreComprador
+						// recibir fechaCompra
+						// crear ticket y meterlo en la bd
 
 						/* code */
 					}
@@ -143,27 +148,109 @@ int main(int argc, char *argv[])
 						/* code */
 					}
 				} while (strcmp(opcion2, "cerrarSesion") == 0);
-			}else{
+			}
+			// VENDEDOR
+			if (login(db, usuario, contrasenya) == 2)
+			{
+				strcpy(sendBuff, "vendedor");
+				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
+				do
+				{
+					recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+					strcpy(opcion2, recvBuff);
+					if (strcmp(opcion2, "verPerfil") == 0)
+					{
+						// solicitar todos los coches a la bd
+						// guardar array de coches que devuelve la bd
+
+						// mandar numero de coches al cliente
+
+						// mandar coches al cliente con un for
+
+						// recibir matricula
+						// recibir usuario
+						// recibir nombreComprador
+						// recibir fechaCompra
+						// crear ticket y meterlo en la bd
+
+						/* code */
+					}
+					if (strcmp(opcion2, "verTickets") == 0)
+					{
+						/* code */
+					}
+				} while (strcmp(opcion2, "cerrarSesion") == 0);
+			}
+			else
+			{
 				strcpy(sendBuff, "erroneos");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 			}
 		}
-		if (strcmp(recvBuff, "register") == 0)
+		if (strcmp(opcion, "registro") == 0)
 		{
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-			strcpy(usuario, recvBuff);
-			printf("%s \n", usuario);
-			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-			strcpy(contrasenya, recvBuff);
-			printf("%s \n", contrasenya);
+			strcpy(opcion2, recvBuff);
 
-			// los devolvemos para comprobar que llegan
-			strcpy(recvBuff, usuario);
-			send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-			strcpy(recvBuff, contrasenya);
-			send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+			if (strcmp(opcion2, "1") == 0)
+			{
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(usuario, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(contrasenya, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(nombre, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(dni, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(email, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(cuentaBancaria, recvBuff);
+
+				if (registrarComprador(db, usuario, contrasenya, nombre, dni, email, cuentaBancaria) == 1)
+				{
+					printf("Comprador agregado con exito a la BD");
+				}
+				else
+				{
+					printf("Error al agregar al comprador a la BD");
+				}
+			}
+			if (strcmp(opcion2, "2") == 0)
+			{
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(usuario, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(contrasenya, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(nombre, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(dni, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(email, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				sscanf(recvBuff, "%f.2", &sueldo);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				numVentas = iota(recvBuff);
+
+				if (registrarVendedor(db, usuario, contrasenya, nombre, dni, email, sueldo, numVentas) == 1)
+				{
+					printf("Comprador agregado con exito a la BD");
+				}
+				else
+				{
+					printf("Error al agregar al comprador a la BD");
+				}
+			}
+			else
+			{
+				// mando error a cliente
+				strcpy(sendBuff, "error");
+				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+			}
 		}
-	} while (strcmp(opcion,"exit") != 0);
+	} while (strcmp(opcion, "exit") != 0);
 
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);
