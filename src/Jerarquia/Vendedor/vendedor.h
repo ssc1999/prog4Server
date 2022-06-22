@@ -3,7 +3,8 @@
 #ifndef VENDEDOR_H_
 #define VENDEDOR_H_
 
-typedef struct {
+typedef struct
+{
 	char usuario[20];
 	char contrasenya[20];
 	char nombre[25];
@@ -11,7 +12,7 @@ typedef struct {
 	char email[25];
 	float sueldo;
 	int numVentas;
-	// tipo 1
+	// tipo 2
 } Vendedor;
 
 void imprimirVendedor(Vendedor vendedor);
