@@ -58,70 +58,64 @@
 // 	return tickets;
 // }
 
-// Coche* getCoches(sqlite3* db){
-// 	sqlite3_stmt* stmt; // statement para guardar lo que te devuelve la bd
-// 	Coche* coches = (Ticket*) malloc(100 * sizeof(Coche)); // meter en este array de coches lo que hay en cada fila que me devuelve la bd
+ Coche* getAllCoches(sqlite3* db){
+ 	sqlite3_stmt* stmt; // statement para guardar lo que te devuelve la bd
+ 	Coche* coches = (Coche*) malloc(100 * sizeof(Coche)); // meter en este array de coches lo que hay en cada fila que me devuelve la bd
 
-// 	// la bd te devuelve filas
-// 	// dentro de cada fila, cada columna ser� un atributo
-// 	// meteremos eso en los atributos que creo
-// 	// despu�s con esos atributos crearemos una struct y despu�s esa struct la metemos en el array de structs
-// 	char matricula[7];
-// 	char marca[15];
-// 	char modelo[15];
-// 	int automatico;
-// 	int plazas;
-// 	int anyoFabricacion;
+ 	// la bd te devuelve filas
+ 	// dentro de cada fila, cada columna ser� un atributo
+ 	// meteremos eso en los atributos que creo
+ 	// despu�s con esos atributos crearemos una struct y despu�s esa struct la metemos en el array de structs
 
-// 	// crear sentencia sql
-// 	int i = 0;
-// 	char sql[] = "select matricula, marca, modelo, automatico, plazas, anyoFabricacion from coche";
+ 	// crear sentencia sql
+ 	int i = 0;
+ 	char sql[] = "select matricula, marca, modelo, automatico, plazas, anyoFabricacion from coche";
 
-// 	// preparamos el statement
-// 	// le pasamos la bd
-// 	// le pasamos la sentencia sql
-// 	// le pasamos la direcci�n de memoria de stmt, para que guarde ah� lo que nos devuelva la bd en formato de tabla (filas/columnas)
-// 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
-// 	if (result != SQLITE_OK) {
-// 		printf("Error preparing statement (SELECT)\n");
-// 		printf("%s\n", sqlite3_errmsg(db)); // imprime el mensaje de error que devuelve la bd
-// 		return NULL;
-// 	}
+ 	// preparamos el statement
+ 	// le pasamos la bd
+ 	// le pasamos la sentencia sql
+ 	// le pasamos la direcci�n de memoria de stmt, para que guarde ah� lo que nos devuelva la bd en formato de tabla (filas/columnas)
+ 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+ 	if (result != SQLITE_OK) {
+ 		printf("Error preparing statement (SELECT)\n");
+ 		printf("%s\n", sqlite3_errmsg(db)); // imprime el mensaje de error que devuelve la bd
+ 		return NULL;
+ 	}
 
-// 	printf("SQL query prepared (SELECT)\n"); // si va bien
+ 	printf("SQL query prepared (SELECT)\n"); // si va bien
 
-// 	printf("//////////////////////\n");
-// 	printf("//////////////////////\n");
-// 	printf("Coches:\n");
-// 	// recorres todas las filas de stmt (lo que te devuelve la bd despues de mandarle la sentencia)
-// 	// este do while se va a hacer tantas veces como filas existan en el stmt
-// 	do {
-// 		result = sqlite3_step(stmt); // el step salta de fila y guarda en resultado si hay una fila o no
-// 		if (result == SQLITE_ROW) { // si existe una fila
-// 			strcpy(coches[i].matricula, (char*) sqlite3_column_text(stmt, 0));
-// 			strcpy(coches[i].marca, (char*) sqlite3_column_text(stmt, 1));
-// 			strcpy(coches[i].modelo, (char*) sqlite3_column_text(stmt, 2));
-// 			coches[i].automatico = sqlite3_column_text(stmt, 3);
-// 			coches[i].plazas = sqlite3_column_text(stmt, 4);
-// 			coches[i].anyoFabricacion = sqlite3_column_text(stmt, 5);
-// 			i++;
-// 		}
-// 	} while (result == SQLITE_ROW);  // mientras que exista fila
+ 	printf("//////////////////////\n");
+ 	printf("//////////////////////\n");
+ 	printf("Coches:\n");
+ 	// recorres todas las filas de stmt (lo que te devuelve la bd despues de mandarle la sentencia)
+ 	// este do while se va a hacer tantas veces como filas existan en el stmt
+ 	do {
+ 		result = sqlite3_step(stmt); // el step salta de fila y guarda en resultado si hay una fila o no
+ 		if (result == SQLITE_ROW) { // si existe una fila
+ 			strcpy(coches[i].matricula, (char*) sqlite3_column_text(stmt, 0));
+ 			strcpy(coches[i].marca, (char*) sqlite3_column_text(stmt, 1));
+ 			strcpy(coches[i].modelo, (char*) sqlite3_column_text(stmt, 2));
+ 			coches[i].automatico = sqlite3_column_int(stmt, 3);
+ 			coches[i].plazas = sqlite3_column_int(stmt, 4);
+ 			coches[i].anyoFabricacion = sqlite3_column_int(stmt, 5);
+ 			i++;
+ 		}
+ 	} while (result == SQLITE_ROW);  // mientras que exista fila
 
-// 	printf("\n");
-// 	printf("\n");
+ 	printf("\n");
+ 	printf("\n");
 
-// 	printf("Prepared statement finalized (SELECT)\n");
+ 	printf("Prepared statement finalized (SELECT)\n");
 
-// 	result = sqlite3_finalize(stmt);
-// 	if (result != SQLITE_OK) {
-// 		printf("Error finalizing statement (SELECT)\n");
-// 		printf("%s\n", sqlite3_errmsg(db));
-// 		return NULL;
-// 	}
+ 	result = sqlite3_finalize(stmt);
+ 	if (result != SQLITE_OK) {
+ 		printf("Error finalizing statement (SELECT)\n");
+ 		printf("%s\n", sqlite3_errmsg(db));
+ 		return NULL;
+ 	}
 
-// 	return coches;
-// }
+ 	return coches;
+ }
 
 // Comprador* getCompradores(sqlite3* db){
 //     sqlite3_stmt* stmt;

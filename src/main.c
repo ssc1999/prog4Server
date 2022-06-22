@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	struct sockaddr_in server;
 	struct sockaddr_in client;
 	char sendBuff[512], recvBuff[512];
-	char opcion[20], opcion2[20], usuario[20], char contrasenya[20], char nombre[25], dni[9], char email[25], char cuentaBancaria[20];
+	char opcion[20], opcion2[20], usuario[20], contrasenya[20], nombre[25], dni[9], email[25], cuentaBancaria[20];
 	float sueldo;
 	int numVentas;
 	sqlite3 *db;
@@ -232,7 +232,7 @@ int main(int argc, char *argv[])
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 				sscanf(recvBuff, "%f.2", &sueldo);
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-				numVentas = iota(recvBuff);
+				numVentas = atoi(recvBuff);
 
 				if (registrarVendedor(db, usuario, contrasenya, nombre, dni, email, sueldo, numVentas) == 1)
 				{

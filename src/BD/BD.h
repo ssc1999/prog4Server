@@ -6,10 +6,10 @@
 #include "../Jerarquia/Ticket/ticket.h"
 #include "../Jerarquia/Vendedor/vendedor.h"
 
-Ticket *getAllTickets(sqlite3 *db);
-Coche *getAllCoches(sqlite3 *db);
-Comprador *getAllCompradores(sqlite3 *db);
-Vendedor *getAllVendedores(sqlite3 *db);
+Ticket* getAllTickets(sqlite3 *db);
+Coche* getAllCoches(sqlite3 *db);
+Comprador* getAllCompradores(sqlite3 *db);
+Vendedor* getAllVendedores(sqlite3 *db);
 
 // SELECT ME DEVUELVE EL TIPO
 int login(sqlite3 *db, char usuario[], char contrasenya[20]);
