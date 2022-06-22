@@ -20,9 +20,10 @@ int main(int argc, char *argv[])
 	struct sockaddr_in server;
 	struct sockaddr_in client;
 	char sendBuff[512], recvBuff[512];
-	char opcion[20], opcion2[20], usuario[20], contrasenya[20], nombre[25], dni[9], email[25], cuentaBancaria[20];
+	char opcion[20], opcion2[20], usuario[20], contrasenya[20], nombre[25], dni[9], email[25], cuentaBancaria[20], matricula[20], nomComprador[20],  fechaCompra[20];
 	float sueldo;
-	int numVentas;
+	int i, numVentas, tamanyo;
+	Ticket *ticket;
 	sqlite3 *db;
 
 	int result = sqlite3_open("BD/BD.sqlite", &db);
@@ -111,6 +112,7 @@ int main(int argc, char *argv[])
 			// COMPRADOR
 			if (login(db, usuario, contrasenya) == 1)
 			{
+				free(contrasenya);
 				strcpy(sendBuff, "comprador");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
@@ -121,18 +123,70 @@ int main(int argc, char *argv[])
 					if (strcmp(opcion2, "comprarCoches") == 0)
 					{
 						// solicitar todos los coches a la bd
+						Coche* coches = (Coche*)malloc(20*sizeof(Coche*));
+
 						// guardar array de coches que devuelve la bd
-
+						getAllCoches(db);
+						printf(" Coche main marca:%s", coches[i].marca);
+						printf(" Coche main matricula:%s", coches[i].matricula);
+						tamanyo = sizeof(coches) / sizeof(coches[0]);
 						// mandar numero de coches al cliente
-
-						// mandar coches al cliente con un for
+						sscanf(sendBuff, "%ld", tamanyo);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", tamanyo);
+						printf("%s", sendBuff);
+						// mandar coches (todos sus atributos) al cliente con un for
+						for(i = 0; i < tamanyo; i++){
+							strcpy(sendBuff, coches[i].matricula);
+							printf("%s", sendBuff);
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+							strcpy(sendBuff, coches[i].marca);
+							printf("%s", sendBuff);
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+							strcpy(sendBuff, coches[i].modelo);
+							printf("%s", sendBuff);
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+							sscanf(sendBuff, "%ld", coches[i].automatico);
+							printf("%s", sendBuff);
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+							sscanf(sendBuff, "%ld", coches[i].plazas);
+							printf("%s", sendBuff);
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+							sscanf(sendBuff, "%ld", coches[i].anyoFabricacion);
+							printf("%s", sendBuff);
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						}		
 
 						// recibir matricula
-						// recibir usuario
-						// recibir nombreComprador
-						// recibir fechaCompra
-						// crear ticket y meterlo en la bd
+						recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+						strcpy(matricula, recvBuff);
 
+						// recibir usuario
+						recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+						strcpy(usuario, recvBuff);
+
+						// recibir fechaCompra
+						recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+						strcpy(fechaCompra, recvBuff);
+
+						// mandar nombreComprador
+						strcpy(nomComprador, getNombreComprador(db, usuario));
+						strcpy(sendBuff,nomComprador);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						
+						// crear ticket y meterlo en la bd
+						strcpy(ticket->matricula, matricula);
+						strcpy(ticket->nomUsuario, usuario);
+						strcpy(ticket->nomComprador, nomComprador);
+						strcpy(ticket->fechaCompra, fechaCompra);
+
+						if(comprarCoche(db, ticket) == 0){
+							strcpy(sendBuff,"OK");
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						}else{
+							strcpy(sendBuff,"Error");
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						}
 						/* code */
 					}
 					if (strcmp(opcion2, "misCoches") == 0)

@@ -16,8 +16,20 @@ void imprimirComprador(Comprador comprador)
 	printf("Cuenta bancaria: %s\n", comprador.cuentaBancaria);
 }
 
-int comprarCoche(sqlite3 *db, char matricula[20], char usuario)
+int comprarCoche(sqlite3 *db, Ticket *ticket)
 {
+	updateCocheBD(db, ticket->nomUsuario, ticket->matricula);
+	insertTicket(db, ticket);
 	// metodo BD de cambiar atributo en coche
 	// metodo de crear ticket
+}
+
+Comprador getComprador(sqlite3 *db, char usuario[20]){
+
+}
+
+char *getNombreComprador(sqlite3 *db, char usuario[20]){
+	char *nombreComprador = malloc(sizeof(char) * 20);
+	strcpy(nombreComprador, getComprador(db, usuario).nombre);
+	return nombreComprador;
 }

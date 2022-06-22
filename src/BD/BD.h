@@ -14,13 +14,13 @@ Vendedor* getAllVendedores(sqlite3 *db);
 // SELECT ME DEVUELVE EL TIPO
 int login(sqlite3 *db, char usuario[], char contrasenya[20]);
 // UPDATE
-int updateCoche(sqlite3 *db, char matricula[10], char usuario[10]); // para cuando lo compremos
+int updateCocheBD(sqlite3 *db, char matricula[20], char usuario[20]); // para cuando lo compremos
 // INSERT
-int insertTicket(sqlite3 *db, char usuario[20], char matricula[40], char fechaCompra[10]);
+int insertTicket(sqlite3 *db, Ticket *ticket);
 // SELECT
-Comprador getComprador(sqlite3 *db, char usuario[20]);
+Comprador getCompradorBD(sqlite3 *db, char usuario[20]);
 // SELECT
-Vendedor getVendedor(sqlite3 *db, char usuario[20]);
+Vendedor getVendedorBD(sqlite3 *db, char usuario[20]);
 // SELECT
 Coche *getCoches(sqlite3 *db, char usuario[20]);
 // SELECT
