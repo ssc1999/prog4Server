@@ -6,6 +6,8 @@
 #include "BD/sqlite3.h"
 #include "BD/BD.h"
 #include "Jerarquia/Comprador/comprador.h"
+#include "Jerarquia/Vendedor/vendedor.h"
+#include "Jerarquia/Ticket/ticket.h"
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 6000
@@ -22,8 +24,11 @@ int main(int argc, char *argv[])
 	char sendBuff[512], recvBuff[512];
 	char opcion[20], opcion2[20], usuario[20], contrasenya[20], nombre[25], dni[9], email[25], cuentaBancaria[20], matricula[20], nomComprador[20],  fechaCompra[20];
 	float sueldo;
-	int i, numVentas, tamanyo;
+	int i, numVentas, tamanyo, resultado;
 	Ticket *ticket;
+	Coche coches[20];
+	Comprador *comprador;
+	Vendedor *vendedor;
 	sqlite3 *db;
 
 	int result = sqlite3_open("BD/BD.sqlite", &db);
@@ -108,11 +113,10 @@ int main(int argc, char *argv[])
 			strcpy(usuario, recvBuff);
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(contrasenya, recvBuff);
-
+			resultado = login(db, usuario, contrasenya);
 			// COMPRADOR
-			if (login(db, usuario, contrasenya) == 1)
+			if (resultado == 1)
 			{
-				free(contrasenya);
 				strcpy(sendBuff, "comprador");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
@@ -123,10 +127,10 @@ int main(int argc, char *argv[])
 					if (strcmp(opcion2, "comprarCoches") == 0)
 					{
 						// solicitar todos los coches a la bd
-						Coche* coches = (Coche*)malloc(20*sizeof(Coche*));
 
 						// guardar array de coches que devuelve la bd
-						getAllCoches(db);
+						
+
 						printf(" Coche main marca:%s", coches[i].marca);
 						printf(" Coche main matricula:%s", coches[i].matricula);
 						tamanyo = sizeof(coches) / sizeof(coches[0]);
@@ -135,6 +139,13 @@ int main(int argc, char *argv[])
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						printf("%s", tamanyo);
 						printf("%s", sendBuff);
+
+						getAllCoches(db, coches);
+						for ( i = 0; i < tamanyo; i++)
+						{
+							printf("Main coche %i: \n Matricula: %s \n Marca: %s \n Modelo: %s \n \n", i, coches[i].matricula, coches[i].marca, coches[i].modelo);
+						}
+
 						// mandar coches (todos sus atributos) al cliente con un for
 						for(i = 0; i < tamanyo; i++){
 							strcpy(sendBuff, coches[i].matricula);
@@ -155,6 +166,7 @@ int main(int argc, char *argv[])
 							sscanf(sendBuff, "%ld", coches[i].anyoFabricacion);
 							printf("%s", sendBuff);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+							fflush(stdout);
 						}		
 
 						// recibir matricula
@@ -189,22 +201,22 @@ int main(int argc, char *argv[])
 						}
 						/* code */
 					}
-					if (strcmp(opcion2, "misCoches") == 0)
+					else if (strcmp(opcion2, "misCoches") == 0)
 					{
 						/* code */
 					}
-					if (strcmp(opcion2, "misTickets") == 0)
+					else if (strcmp(opcion2, "misTickets") == 0)
 					{
 						/* code */
 					}
-					if (strcmp(opcion2, "verPerfil") == 0)
+					else if (strcmp(opcion2, "verPerfil") == 0)
 					{
 						/* code */
 					}
-				} while (strcmp(opcion2, "cerrarSesion") == 0);
+				} while (strcmp(opcion2, "cerrarSesion") != 0);
 			}
-			// VENDEDOR
-			if (login(db, usuario, contrasenya) == 2)
+			
+			else if (resultado == 2)
 			{
 				strcpy(sendBuff, "vendedor");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
@@ -236,23 +248,19 @@ int main(int argc, char *argv[])
 					}
 				} while (strcmp(opcion2, "cerrarSesion") == 0);
 			}
-			else
+			else// mirar
 			{
 				strcpy(sendBuff, "erroneos");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 			}
-		}
-		if (strcmp(opcion, "registro") == 0)
+		}else if (strcmp(opcion, "registro") == 0)
 		{
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(opcion2, recvBuff);
 
 			if (strcmp(opcion2, "1") == 0)
 			{
-				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-				strcpy(usuario, recvBuff);
-				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-				strcpy(contrasenya, recvBuff);
+				
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 				strcpy(nombre, recvBuff);
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
@@ -261,22 +269,25 @@ int main(int argc, char *argv[])
 				strcpy(email, recvBuff);
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 				strcpy(cuentaBancaria, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(usuario, recvBuff);
+				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
+				strcpy(contrasenya, recvBuff);
 
 				if (registrarComprador(db, usuario, contrasenya, nombre, dni, email, cuentaBancaria) == 1)
 				{
 					printf("Comprador agregado con exito a la BD");
+					
 				}
 				else
 				{
 					printf("Error al agregar al comprador a la BD");
 				}
+			fflush(stdout);
 			}
-			if (strcmp(opcion2, "2") == 0)
+			else if (strcmp(opcion2, "2") == 0)
 			{
-				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-				strcpy(usuario, recvBuff);
-				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-				strcpy(contrasenya, recvBuff);
+				
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 				strcpy(nombre, recvBuff);
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
@@ -284,17 +295,17 @@ int main(int argc, char *argv[])
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 				strcpy(email, recvBuff);
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-				sscanf(recvBuff, "%f.2", &sueldo);
+				strcpy(usuario, recvBuff);
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
-				numVentas = atoi(recvBuff);
+				strcpy(contrasenya, recvBuff);
 
-				if (registrarVendedor(db, usuario, contrasenya, nombre, dni, email, sueldo, numVentas) == 1)
+				if (registrarVendedor(db, usuario, contrasenya, nombre, dni, email) == 1)
 				{
-					printf("Comprador agregado con exito a la BD");
+					printf("Vendedor agregado con exito a la BD");
 				}
 				else
 				{
-					printf("Error al agregar al comprador a la BD");
+					printf("Error al agregar al vendedor a la BD");
 				}
 			}
 			else
@@ -303,6 +314,7 @@ int main(int argc, char *argv[])
 				strcpy(sendBuff, "error");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 			}
+		fflush(stdout);
 		}
 	} while (strcmp(opcion, "exit") != 0);
 

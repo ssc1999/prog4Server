@@ -5,8 +5,8 @@
 
 typedef struct {
 	char matricula[7];
-	char marca[10];
-	char modelo[10];
+	char marca[20];
+	char modelo[20];
 	int automatico;
 	int plazas;
 	int anyoFabricacion;
