@@ -24,12 +24,16 @@ int comprarCoche(sqlite3 *db, Ticket *ticket)
 	// metodo de crear ticket
 }
 
-Comprador getComprador(sqlite3 *db, char usuario[20]){
+// char *getNombreComprador(sqlite3 *db, char usuario[20]){
+// 	char *nombreComprador = malloc(sizeof(char) * 20);
+// 	strcpy(nombreComprador, getComprador(db, usuario).nombre);
+// 	return nombreComprador;
+// }
 
-}
+Comprador* getComprador(sqlite3 *db, char usuario[20]){
 
-char *getNombreComprador(sqlite3 *db, char usuario[20]){
-	char *nombreComprador = malloc(sizeof(char) * 20);
-	strcpy(nombreComprador, getComprador(db, usuario).nombre);
-	return nombreComprador;
+	Comprador* comprador = (Comprador*) malloc(sizeof(Comprador));
+	comprador = getCompradorBD(db, usuario);
+	printf("%s", comprador->usuario);
+	return comprador;
 }

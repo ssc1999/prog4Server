@@ -26,9 +26,9 @@ int main(int argc, char *argv[])
 	float sueldo;
 	int i, numVentas, tamanyo, resultado;
 	Ticket *ticket;
-	Coche coches[20];
-	Comprador *comprador;
-	Vendedor *vendedor;
+	Coche** coches;
+	Comprador* comprador;
+	Vendedor* vendedor;
 	sqlite3 *db;
 
 	int result = sqlite3_open("BD/BD.sqlite", &db);
@@ -119,51 +119,46 @@ int main(int argc, char *argv[])
 			{
 				strcpy(sendBuff, "comprador");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-
 				do
 				{
 					recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 					strcpy(opcion2, recvBuff);
 					if (strcmp(opcion2, "comprarCoches") == 0)
 					{
-						// solicitar todos los coches a la bd
-
+						
+						// crear array dinamico de punteros de coches
+						coches = (Coche**) malloc(20*sizeof(Coche*));
+						for (i = 0; i < 20; i++){
+							coches[i] = (Coche*) malloc(sizeof(Coche));
+						}
+						getAllCoches(db, coches);
+						strcpy(sendBuff, "20");
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						// guardar array de coches que devuelve la bd
 						
-
-						printf(" Coche main marca:%s", coches[i].marca);
-						printf(" Coche main matricula:%s", coches[i].matricula);
-						tamanyo = sizeof(coches) / sizeof(coches[0]);
-						// mandar numero de coches al cliente
-						sscanf(sendBuff, "%ld", tamanyo);
-						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s", tamanyo);
-						printf("%s", sendBuff);
-
-						getAllCoches(db, coches);
-						for ( i = 0; i < tamanyo; i++)
+						for ( i = 0; i < 5; i++)
 						{
-							printf("Main coche %i: \n Matricula: %s \n Marca: %s \n Modelo: %s \n \n", i, coches[i].matricula, coches[i].marca, coches[i].modelo);
+							printf("Main coche %i: \n Matricula: %s \n Marca: %s \n Modelo: %s \n \n", i, coches[i]->matricula, coches[i]->marca, coches[i]->modelo);
 						}
 
 						// mandar coches (todos sus atributos) al cliente con un for
-						for(i = 0; i < tamanyo; i++){
-							strcpy(sendBuff, coches[i].matricula);
+						for(i = 0; i < 20; i++){
+							strcpy(sendBuff, coches[i]->matricula);
 							printf("%s", sendBuff);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-							strcpy(sendBuff, coches[i].marca);
+							strcpy(sendBuff, coches[i]->marca);
 							printf("%s", sendBuff);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-							strcpy(sendBuff, coches[i].modelo);
+							strcpy(sendBuff, coches[i]->modelo);
 							printf("%s", sendBuff);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-							sscanf(sendBuff, "%ld", coches[i].automatico);
+							sscanf(sendBuff, "%ld", coches[i]->automatico);
 							printf("%s", sendBuff);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-							sscanf(sendBuff, "%ld", coches[i].plazas);
+							sscanf(sendBuff, "%ld", coches[i]->plazas);
 							printf("%s", sendBuff);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-							sscanf(sendBuff, "%ld", coches[i].anyoFabricacion);
+							sscanf(sendBuff, "%ld", coches[i]->anyoFabricacion);
 							printf("%s", sendBuff);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 							fflush(stdout);
@@ -182,23 +177,23 @@ int main(int argc, char *argv[])
 						strcpy(fechaCompra, recvBuff);
 
 						// mandar nombreComprador
-						strcpy(nomComprador, getNombreComprador(db, usuario));
-						strcpy(sendBuff,nomComprador);
-						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						// strcpy(nomComprador, getNombreComprador(db, usuario));
+						// strcpy(sendBuff,nomComprador);
+						// send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						
-						// crear ticket y meterlo en la bd
-						strcpy(ticket->matricula, matricula);
-						strcpy(ticket->nomUsuario, usuario);
-						strcpy(ticket->nomComprador, nomComprador);
-						strcpy(ticket->fechaCompra, fechaCompra);
+						// // crear ticket y meterlo en la bd
+						// strcpy(ticket->matricula, matricula);
+						// strcpy(ticket->nomUsuario, usuario);
+						// strcpy(ticket->nomComprador, nomComprador);
+						// strcpy(ticket->fechaCompra, fechaCompra);
 
-						if(comprarCoche(db, ticket) == 0){
-							strcpy(sendBuff,"OK");
-							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						}else{
-							strcpy(sendBuff,"Error");
-							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						}
+						// if(comprarCoche(db, ticket) == 0){
+						// 	strcpy(sendBuff,"OK");
+						// 	send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						// }else{
+						// 	strcpy(sendBuff,"Error");
+						// 	send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						// }
 						/* code */
 					}
 					else if (strcmp(opcion2, "misCoches") == 0)
@@ -211,7 +206,24 @@ int main(int argc, char *argv[])
 					}
 					else if (strcmp(opcion2, "verPerfil") == 0)
 					{
-						/* code */
+						comprador = getComprador(db, usuario);
+						printf("ha llamado al metodo");
+						strcpy(sendBuff, comprador->usuario);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", comprador->usuario);
+						strcpy(sendBuff, comprador->nombre);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", comprador->nombre);
+						strcpy(sendBuff, comprador->dni);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", comprador->dni);
+						strcpy(sendBuff, comprador->email);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", comprador->email);
+						strcpy(sendBuff, comprador->cuentaBancaria);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", comprador->cuentaBancaria);
+
 					}
 				} while (strcmp(opcion2, "cerrarSesion") != 0);
 			}
@@ -227,18 +239,25 @@ int main(int argc, char *argv[])
 					strcpy(opcion2, recvBuff);
 					if (strcmp(opcion2, "verPerfil") == 0)
 					{
-						// solicitar todos los coches a la bd
-						// guardar array de coches que devuelve la bd
-
-						// mandar numero de coches al cliente
-
-						// mandar coches al cliente con un for
-
-						// recibir matricula
-						// recibir usuario
-						// recibir nombreComprador
-						// recibir fechaCompra
-						// crear ticket y meterlo en la bd
+						vendedor = getVendedor(db, usuario);
+						printf("%s", vendedor->usuario);
+						strcpy(sendBuff, vendedor->usuario);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", vendedor->nombre);
+						strcpy(sendBuff, vendedor->nombre);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", vendedor->dni);
+						strcpy(sendBuff, vendedor->dni);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", vendedor->email);
+						strcpy(sendBuff, vendedor->email);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", vendedor->sueldo);
+						itoa(vendedor->sueldo, sendBuff, 10);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", vendedor->numVentas);
+						itoa(vendedor->numVentas, sendBuff, 10);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
 						/* code */
 					}

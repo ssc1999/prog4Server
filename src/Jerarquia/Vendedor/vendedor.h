@@ -16,5 +16,6 @@ typedef struct
 } Vendedor;
 
 void imprimirVendedor(Vendedor vendedor);
+Vendedor* getVendedor(sqlite3 *db, char usuario[20]);
 
 #endif /* VENDEDOR_H_ */

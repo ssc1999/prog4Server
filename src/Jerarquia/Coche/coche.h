@@ -12,6 +12,6 @@ typedef struct {
 	int anyoFabricacion;
 } Coche;
 
-void imprimirCoche(Coche coche);
+void imprimirCoche(Coche* coche);
 
 #endif /* COCHE_H_ */

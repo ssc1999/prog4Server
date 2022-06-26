@@ -58,7 +58,7 @@
 // 	return tickets;
 // }
 
-void getAllCoches(sqlite3* db, Coche *coches){
+void getAllCoches(sqlite3* db, Coche** coches){
  	sqlite3_stmt* stmt; // statement para guardar lo que te devuelve la bd
 	 // meter en este array de coches lo que hay en cada fila que me devuelve la bd
 	char matricula[25], marca[25], modelo[25], matriculaTemp[25];
@@ -94,21 +94,19 @@ void getAllCoches(sqlite3* db, Coche *coches){
 		
 		result = sqlite3_step(stmt); // el step salta de fila y guarda en resultado si hay una fila o no
 		if (result == SQLITE_ROW) { // si existe una fila
-			strcpy(matricula, (char*)sqlite3_column_text(stmt, 0));
-			strcpy(marca, (char*) sqlite3_column_text(stmt, 1));
- 			strcpy(modelo, (char*) sqlite3_column_text(stmt, 2));
- 			automatico = sqlite3_column_int(stmt, 3);
- 			plazas = sqlite3_column_int(stmt, 4);
- 			anyoFabricacion = sqlite3_column_int(stmt, 5);
-			printf("Matricula bd : %s\n" ,matricula);
-			printf("marca bd : %s\n" ,marca);
-			strcpy(coches[i].matricula, matricula);
-			strcpy(coches[i].marca, marca);
-			strcpy(coches[i].modelo, modelo);
+			strcpy(coches[i]->matricula, (char*)sqlite3_column_text(stmt, 0));
+			strcpy(coches[i]->marca, (char*) sqlite3_column_text(stmt, 1));
+ 			strcpy(coches[i]->modelo, (char*) sqlite3_column_text(stmt, 2));
+ 			coches[i]->automatico = sqlite3_column_int(stmt, 3);
+ 			coches[i]->plazas = sqlite3_column_int(stmt, 4);
+ 			coches[i]->anyoFabricacion = sqlite3_column_int(stmt, 5);
 			printf("Coche %i:\n", i);
-			printf("Matricula %s\n", coches[i].matricula);
-			printf("Marca %s\n", coches[i].marca);
-			printf("Modelo %s\n", coches[i].modelo);
+			printf("Matricula %s\n", coches[i]->matricula);
+			printf("Marca %s\n", coches[i]->marca);
+			printf("Modelo %s\n", coches[i]->modelo);
+			printf("Automatico: %i\n", coches[i]->automatico);
+			printf("Plazas: %i\n", coches[i]->plazas);
+			printf("Anyo de fabricacion: %i\n", coches[i]->anyoFabricacion);
 			i++;
 		}
 		
@@ -127,73 +125,10 @@ void getAllCoches(sqlite3* db, Coche *coches){
  	// 	return NULL;
  	// }
 
- 	return ;
+ 	return;
  }
 
-// Comprador* getCompradores(sqlite3* db){
-//     sqlite3_stmt* stmt;
-//     Comprador* compradores = (Comprador*) malloc(100 * sizeof(Comprador));
 
-// 	char nombre[25];
-// 	char dni[9];
-// 	char email[25];
-// 	char cuentaBancaria[20];
-
-//     int i = 0;
-// 	char sql[] = "select nombre, dni, email, cuentaBancaria, usuario, contrasenya from usuario where tipo = 0;
-
-// 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
-// 	if (result != SQLITE_OK) {
-// 		printf("Error preparing statement (SELECT)\n");
-// 		printf("%s\n", sqlite3_errmsg(db));
-// 		return NULL;
-// 	}
-
-// 	printf("SQL query prepared (SELECT)\n");
-
-// 	printf("//////////////////////\n");
-// 	printf("//////////////////////\n");
-// 	printf("Compradores:\n");
-
-// 	do {
-// 		result = sqlite3_step(stmt);
-// 		if (result == SQLITE_ROW) {
-// 			strcpy(compradores[i].nombre, (char*) sqlite3_column_text(stmt, 0));
-//          strcpy(compradores[i].dni, (char*) sqlite3_column_text(stmt, 1));
-//          strcpy(compradores[i].email, (char*) sqlite3_column_text(stmt, 2));
-//          strcpy(compradores[i].cuentaBancaria, (char*) sqlite3_column_text(stmt, 3));
-//          strcpy(vendedores[i].usuario, (char*) sqlite3_column_text(stmt, 4));
-//          strcpy(vendedores[i].contrasenya, (char*) sqlite3_column_text(stmt, 5));
-//          i++;
-// 		}
-// 	} while (result == SQLITE_ROW);
-
-// 	printf("\n");
-// 	printf("\n");
-
-// 	printf("Prepared statement finalized (SELECT)\n");
-
-// 	result = sqlite3_finalize(stmt);
-// 	if (result != SQLITE_OK) {
-// 		printf("Error finalizing statement (SELECT)\n");
-// 		printf("%s\n", sqlite3_errmsg(db));
-// 		return NULL;
-// 	}
-
-// 	return compradores;
-// }
-
-// Vendedor* getVendedores(sqlite3* db){
-//     sqlite3_stmt* stmt;
-//     Vendedor* vendedores = (Vendedor) malloc(100 * sizeof(Vendedor));
-
-// 	char nombre[25];
-// 	char dni[9];
-// 	char email[25];
-// 	float sueldo;
-// 	int numVentas;
-
-//     int i = 0;
 // 	char sql[] = "select nombre, dni, email, sueldo, numVentas, usuario, contrasenya from usuario where tipo = 1";
 
 // 	int result = sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
@@ -357,11 +292,11 @@ int insertTicket(sqlite3 *db, Ticket *ticket)
 }
 
 // SELECT
-Comprador getCompradorBD(sqlite3 *db, char usuario[20])
+Comprador* getCompradorBD(sqlite3 *db, char usuario[20])
 {
 	sqlite3_stmt *stmt;
 	char usuarioTemp[20], contrasenyaTemp[20];
-	Comprador c;
+	Comprador* c = (Comprador*) malloc(sizeof(Comprador));
 
 	char sql[] = "select usuario, contrasenya, nombre, dni, email, cuentaBancaria from usuario where usuario = ?";
 
@@ -382,26 +317,21 @@ Comprador getCompradorBD(sqlite3 *db, char usuario[20])
 		printf("%s\n", sqlite3_errmsg(db));
 		return c;
 	}
-
+	
 	result = sqlite3_step(stmt);
+	
 	if (result == SQLITE_ROW)
 	{
-		strcpy(c.usuario, (char *)sqlite3_column_text(stmt, 0));
-		strcpy(c.contrasenya, (char *)sqlite3_column_text(stmt, 1));
-		strcpy(c.nombre, (char *)sqlite3_column_text(stmt, 2));
-		strcpy(c.dni, (char *)sqlite3_column_text(stmt, 3));
-		strcpy(c.email, (char *)sqlite3_column_text(stmt, 4));
-		strcpy(c.cuentaBancaria, (char *)sqlite3_column_text(stmt, 5));
-
-		// c.usuario = (char *)sqlite3_column_text(stmt, 0);
-		// c.contrasenya = (char *)sqlite3_column_text(stmt, 1);
-		// c.nombre = (char *)sqlite3_column_text(stmt, 2);
-		// c.dni = (char *)sqlite3_column_text(stmt, 3);
-		// c.email = (char *)sqlite3_column_text(stmt, 4);
-		// c.cuentaBancaria = (char *)sqlite3_column_text(stmt, 5);
+		strcpy(c->usuario, (char *)sqlite3_column_text(stmt, 0));
+		strcpy(c->contrasenya, (char *)sqlite3_column_text(stmt, 1));
+		strcpy(c->nombre, (char *)sqlite3_column_text(stmt, 2));
+		strcpy(c->dni, (char *)sqlite3_column_text(stmt, 3));
+		strcpy(c->email, (char *)sqlite3_column_text(stmt, 4));
+		strcpy(c->cuentaBancaria, (char *)sqlite3_column_text(stmt, 5));
 	}
-
+	printf("finalize va bien\n");
 	result = sqlite3_finalize(stmt);
+	
 	if (result != SQLITE_OK)
 	{
 		printf("Error finalizing statement (SELECT)\n");
@@ -414,8 +344,54 @@ Comprador getCompradorBD(sqlite3 *db, char usuario[20])
 	return c;
 }
 // SELECT
-Vendedor getVendedor(sqlite3 *db, char usuario[20]){
+Vendedor* getVendedorBD(sqlite3 *db, char usuario[20]){
+	sqlite3_stmt *stmt;
+	char usuarioTemp[20], contrasenyaTemp[20];
+	Vendedor* v = (Vendedor*) malloc(sizeof(Vendedor));
 
+	char sql[] = "select usuario, contrasenya, nombre, dni, email, sueldo, numVentas from usuario where usuario = ?";
+
+	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+	if (result != SQLITE_OK)
+	{
+		printf("Error preparing statement (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return v;
+	}
+
+	printf("SQL query prepared (SELECT)\n");
+
+	result = sqlite3_bind_text(stmt, 1, usuario, strlen(usuario), SQLITE_STATIC);
+	if (result != SQLITE_OK)
+	{
+		printf("Error binding parameters\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return v;
+	}
+
+	result = sqlite3_step(stmt);
+	if (result == SQLITE_ROW)
+	{
+		strcpy(v->usuario, (char *)sqlite3_column_text(stmt, 0));
+		strcpy(v->contrasenya, (char *)sqlite3_column_text(stmt, 1));
+		strcpy(v->nombre, (char *)sqlite3_column_text(stmt, 2));
+		strcpy(v->dni, (char *)sqlite3_column_text(stmt, 3));
+		strcpy(v->email, (char *)sqlite3_column_text(stmt, 4));
+		v->sueldo = sqlite3_column_int(stmt, 5);
+		v->numVentas = sqlite3_column_int(stmt, 6);
+	}
+
+	result = sqlite3_finalize(stmt);
+	if (result != SQLITE_OK)
+	{
+		printf("Error finalizing statement (SELECT)\n");
+		printf("%s\n", sqlite3_errmsg(db));
+		return v;
+	}
+
+	printf("Prepared statement finalized (SELECT)\n");
+
+	return v;
 }
 // SELECT
 Coche *getCoches(sqlite3 *db, char usuario[20])

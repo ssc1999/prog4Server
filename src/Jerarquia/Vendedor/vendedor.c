@@ -15,3 +15,10 @@ void imprimirVendedor(Vendedor vendedor) {
 	printf("Sueldo: %f\n", vendedor.sueldo);
 	printf("Numero de ventas: %f\n", vendedor.numVentas);
 }
+
+Vendedor* getVendedor(sqlite3 *db, char usuario[20]){
+	Vendedor* vendedor = (Vendedor*) malloc(sizeof(Vendedor));
+	vendedor = getVendedorBD(db, usuario);
+	printf("%s", vendedor->usuario);
+	return vendedor;
+}
