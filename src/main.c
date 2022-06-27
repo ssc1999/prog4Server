@@ -8,6 +8,7 @@
 #include "Jerarquia/Comprador/comprador.h"
 #include "Jerarquia/Vendedor/vendedor.h"
 #include "Jerarquia/Ticket/ticket.h"
+#include "Jerarquia/Coche/coche.h"
 
 #define SERVER_IP "127.0.0.1"
 #define SERVER_PORT 6000
@@ -27,7 +28,8 @@ int main(int argc, char *argv[])
 	int i, numVentas, tamanyo, resultado;
 	Ticket *ticket;
 	Coche** coches;
-	Comprador* comprador;
+	Coche* coche;
+	Comprador *comprador;
 	Vendedor* vendedor;
 	sqlite3 *db;
 
@@ -104,6 +106,10 @@ int main(int argc, char *argv[])
 
 	do
 	{
+		comprador = (Comprador *)malloc(sizeof(Comprador));
+		vendedor = (Vendedor *)malloc(sizeof(Vendedor));
+		coche = (Coche *)malloc(sizeof(Coche));
+
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		strcpy(opcion, recvBuff);
 
@@ -131,7 +137,7 @@ int main(int argc, char *argv[])
 						for (i = 0; i < 20; i++){
 							coches[i] = (Coche*) malloc(sizeof(Coche));
 						}
-						getAllCoches(db, coches);
+						copiarCoches(coches,getAllCoches(db));
 						strcpy(sendBuff, "20");
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						// guardar array de coches que devuelve la bd
@@ -195,10 +201,46 @@ int main(int argc, char *argv[])
 						// 	send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						// }
 						/* code */
+						for (i = 0; i < 20; i++){
+							free(coches[i]);
+						}
+						free(coches);
+						
 					}
-					else if (strcmp(opcion2, "misCoches") == 0)
+					else if (strcmp(opcion2, "miCoche") == 0)
 					{
-						/* code */
+						
+						coche = getCoche(db, usuario);
+		
+						strcpy(sendBuff, coche->matricula);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s\n", coche->matricula);
+
+						strcpy(sendBuff, coche->marca);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s\n", coche->marca);
+
+						strcpy(sendBuff, coche->modelo);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s\n", coche->modelo);
+
+						itoa(coche->automatico, sendBuff, 10);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%i\n", coche->automatico);
+
+						itoa(coche->plazas, sendBuff, 10);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%i\n", coche->plazas);
+
+						itoa(coche->anyoFabricacion, sendBuff, 10);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%i\n",coche->anyoFabricacion);
+						
+						itoa(coche->precio, sendBuff, 10);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%i\n", coche->precio);
+
+						
 					}
 					else if (strcmp(opcion2, "misTickets") == 0)
 					{
@@ -207,7 +249,7 @@ int main(int argc, char *argv[])
 					else if (strcmp(opcion2, "verPerfil") == 0)
 					{
 						comprador = getComprador(db, usuario);
-						printf("ha llamado al metodo");
+
 						strcpy(sendBuff, comprador->usuario);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						printf("%s", comprador->usuario);
@@ -239,7 +281,9 @@ int main(int argc, char *argv[])
 					strcpy(opcion2, recvBuff);
 					if (strcmp(opcion2, "verPerfil") == 0)
 					{
-						vendedor = getVendedor(db, usuario);
+						if(strcmp(vendedor->usuario, usuario) != 0){
+							vendedor = getVendedor(db, usuario);
+						}
 						printf("%s", vendedor->usuario);
 						strcpy(sendBuff, vendedor->usuario);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
@@ -252,20 +296,26 @@ int main(int argc, char *argv[])
 						printf("%s", vendedor->email);
 						strcpy(sendBuff, vendedor->email);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s", vendedor->sueldo);
+						
+						/* code */
+					}
+					else if (strcmp(opcion2, "verDinero") == 0)
+					{
+						if(strcmp(vendedor->usuario, usuario) != 0){
+							vendedor = getVendedor(db, usuario);
+						}
 						itoa(vendedor->sueldo, sendBuff, 10);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s", vendedor->numVentas);
+					}
+					else if (strcmp(opcion2, "verNumeroVentas") == 0)
+					{
+						if(strcmp(vendedor->usuario, usuario) != 0){
+							vendedor = getVendedor(db, usuario);
+						}
 						itoa(vendedor->numVentas, sendBuff, 10);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-
-						/* code */
 					}
-					if (strcmp(opcion2, "verTickets") == 0)
-					{
-						/* code */
-					}
-				} while (strcmp(opcion2, "cerrarSesion") == 0);
+				} while (strcmp(opcion2, "cerrarSesion") != 0);
 			}
 			else// mirar
 			{
@@ -337,6 +387,9 @@ int main(int argc, char *argv[])
 		}
 	} while (strcmp(opcion, "exit") != 0);
 
+	free(vendedor);
+	free(comprador);
+	free(coche);
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);
 	WSACleanup();

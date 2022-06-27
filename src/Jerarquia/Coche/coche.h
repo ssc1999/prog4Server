@@ -10,8 +10,11 @@ typedef struct {
 	int automatico;
 	int plazas;
 	int anyoFabricacion;
+	int precio;
 } Coche;
 
 void imprimirCoche(Coche* coche);
+void copiarCoches(Coche** cocheOrigen, Coche** cocheDestino);
+Coche* getCoche(sqlite3 *db, char usuario[20]);
 
 #endif /* COCHE_H_ */

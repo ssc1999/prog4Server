@@ -19,4 +19,22 @@ void imprimirCoche(Coche *coche) {
 	}
 	printf("Plazas: %d\n", coche->plazas);
 	printf("Anyo fabricacion: %d\n", coche->anyoFabricacion);
+	printf("Precio: %i\n", coche->precio);
+}
+
+void copiarCoches(Coche** cocheOrigen, Coche** cocheDestino){
+	for (int i = 0; i < 4;i++){
+		free(cocheDestino[i]);
+	}
+	cocheDestino = cocheOrigen;
+	free(cocheOrigen);
+}
+
+Coche *getCoche(sqlite3 *db, char usuario[20]){
+	
+	Coche* coche = (Coche*) malloc(sizeof(Coche));
+	coche = getCocheBD(db, usuario);
+	printf("%s - %s\n", coche->marca, coche->modelo);
+
+	return coche;
 }

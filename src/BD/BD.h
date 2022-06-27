@@ -7,7 +7,7 @@
 #include "../Jerarquia/Vendedor/vendedor.h"
 
 Ticket* getAllTickets(sqlite3 *db);
-void getAllCoches(sqlite3 *db, Coche **coches);
+Coche** getAllCoches(sqlite3 *db);
 Comprador* getAllCompradores(sqlite3 *db);
 Vendedor* getAllVendedores(sqlite3 *db);
 
@@ -22,7 +22,7 @@ Comprador* getCompradorBD(sqlite3 *db, char usuario[20]);
 // SELECT
 Vendedor* getVendedorBD(sqlite3 *db, char usuario[20]);
 // SELECT
-Coche *getCoches(sqlite3 *db, char usuario[20]);
+Coche* getCocheBD(sqlite3 *db, char usuario[20]);
 // SELECT
 Ticket *getTickets(sqlite3 *db, char usuario[20]);
 // INSERT
