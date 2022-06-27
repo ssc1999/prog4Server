@@ -450,8 +450,35 @@ Coche* getCocheBD(sqlite3 *db, char usuario[20])
 	return c;
 }
 // SELECT
-Ticket *getTickets(sqlite3 *db, char usuario[20])
+Ticket *getTicketBD(sqlite3 *db, char usuario[20])
 {
+	sqlite3_stmt *stmt;
+	char usuarioTemp[20], contrasenyaTemp[20];
+	Ticket* t = (Ticket*) malloc(sizeof(Ticket));
+
+	char sql[] = "select nomComprador, matricula, fechaCompra, nomUsuario from ticket where nomUsuario = ?";
+
+	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+
+	printf("SQL query prepared (SELECT)\n");
+
+	result = sqlite3_bind_text(stmt, 1, usuario, strlen(usuario), SQLITE_STATIC);
+	
+	result = sqlite3_step(stmt);
+	
+	if (result == SQLITE_ROW)
+	{
+		strcpy(t->nomComprador, (char *)sqlite3_column_text(stmt, 0));
+		strcpy(t->matricula, (char *)sqlite3_column_text(stmt, 1));
+		strcpy(t->fechaCompra, (char *)sqlite3_column_text(stmt, 2));
+		strcpy(t->nomUsuario, (char *)sqlite3_column_text(stmt, 3));
+	}
+	printf("finalize va bien\n");
+	result = sqlite3_finalize(stmt);
+
+	printf("Prepared statement finalized (SELECT)\n");
+
+	return t;
 }
 // INSERT
 int registrarComprador(sqlite3 *db, char usuario[20], char contrasenya[20], char nombre[25], char dni[9], char email[25], char cuentaBancaria[20])

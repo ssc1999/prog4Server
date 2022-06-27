@@ -11,6 +11,12 @@
 void imprimirTicket(Ticket ticket) {
 	printf("Nombre comprador: %s\n", ticket.nomComprador);
 	printf("Nombre usuario: %s\n", ticket.nomUsuario);
-	printf("Matrícula: %s\n", ticket.matricula);
+	printf("Matrï¿½cula: %s\n", ticket.matricula);
 	printf("Fecha compra: %s\n", ticket.fechaCompra);
+}
+
+Ticket* getTicket(sqlite3 *db, char usuario[20]){
+	Ticket *ticket = getTicketBD(db, usuario);
+	printf("Nombre del comprador: %s", ticket->nomComprador);
+	return ticket;
 }

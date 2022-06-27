@@ -24,7 +24,7 @@ Vendedor* getVendedorBD(sqlite3 *db, char usuario[20]);
 // SELECT
 Coche* getCocheBD(sqlite3 *db, char usuario[20]);
 // SELECT
-Ticket *getTickets(sqlite3 *db, char usuario[20]);
+Ticket *getTicketBD(sqlite3 *db, char usuario[20]);
 // INSERT
 int registrarComprador(sqlite3 *db, char usuario[20], char contrasenya[20], char nombre[25], char dni[9], char email[25], char cuentaBancaria[20]);
 // INSERT

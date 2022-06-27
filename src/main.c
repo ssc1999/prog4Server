@@ -242,9 +242,23 @@ int main(int argc, char *argv[])
 
 						
 					}
-					else if (strcmp(opcion2, "misTickets") == 0)
+					else if (strcmp(opcion2, "miTicket") == 0)
 					{
-						/* code */
+						ticket = getTicket(db, usuario);
+
+						strcpy(sendBuff, ticket->nomComprador);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", ticket->nomComprador);
+						strcpy(sendBuff, ticket->nomUsuario);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", ticket->nomUsuario);
+						strcpy(sendBuff, ticket->matricula);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", ticket->matricula);
+						strcpy(sendBuff, ticket->fechaCompra);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						printf("%s", ticket->fechaCompra);
+						
 					}
 					else if (strcmp(opcion2, "verPerfil") == 0)
 					{

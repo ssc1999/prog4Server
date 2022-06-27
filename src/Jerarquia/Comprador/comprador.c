@@ -16,12 +16,19 @@ void imprimirComprador(Comprador comprador)
 	printf("Cuenta bancaria: %s\n", comprador.cuentaBancaria);
 }
 
-int comprarCoche(sqlite3 *db, Ticket *ticket)
-{
-	updateCocheBD(db, ticket->nomUsuario, ticket->matricula);
-	insertTicket(db, ticket);
-	// metodo BD de cambiar atributo en coche
-	// metodo de crear ticket
+void comprarCoche(sqlite3 *db, char matricula[20], char usuario[20]){
+	//CREAR TICKET
+
+	//UPDATE VENDEDOR
+
+	//UPDATE COCHE
+}
+
+Comprador* getComprador(sqlite3 *db, char usuario[20]){
+	Comprador* comprador = (Comprador*) malloc(sizeof(Comprador));
+	comprador = getCompradorBD(db, usuario);
+	printf("%s", comprador->usuario);
+	return comprador;
 }
 
 // char *getNombreComprador(sqlite3 *db, char usuario[20]){
@@ -29,11 +36,3 @@ int comprarCoche(sqlite3 *db, Ticket *ticket)
 // 	strcpy(nombreComprador, getComprador(db, usuario).nombre);
 // 	return nombreComprador;
 // }
-
-Comprador* getComprador(sqlite3 *db, char usuario[20]){
-
-	Comprador* comprador = (Comprador*) malloc(sizeof(Comprador));
-	comprador = getCompradorBD(db, usuario);
-	printf("%s", comprador->usuario);
-	return comprador;
-}

@@ -11,5 +11,6 @@ typedef struct {
 } Ticket;
 
 void imprimirTicket(Ticket ticket);
+Ticket* getTicket(sqlite3 *db, char usuario[20]);
 
 #endif /* TICKET_H_ */

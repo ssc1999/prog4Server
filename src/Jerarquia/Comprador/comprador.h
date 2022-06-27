@@ -16,7 +16,7 @@ typedef struct
 } Comprador;
 
 void imprimirComprador(Comprador comprador);
-int comprarCoche(sqlite3 *db, Ticket *ticket);
+void comprarCoche(sqlite3 *db, char matricula[20], char usuario[20]);
 Comprador* getComprador(sqlite3 *db, char usuario[20]);
 int login(sqlite3 *db, char usuario[20], char contrasenya[20]);
 // char *getNombreComprador(sqlite3 *db, char usuario[20]);
