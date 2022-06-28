@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "../../Logger/log.h"
 #include "../../BD/BD.h"
 #include "../../BD/sqlite3.h"
 //#include "../../Log/logger.h"
@@ -31,10 +31,9 @@ void copiarCoches(Coche** cocheOrigen, Coche** cocheDestino){
 }
 
 Coche *getCoche(sqlite3 *db, char usuario[20]){
-	
+	log_trace("Consultando coche a la BD");
 	Coche* coche = (Coche*) malloc(sizeof(Coche));
 	coche = getCocheBD(db, usuario);
-	printf("%s - %s\n", coche->marca, coche->modelo);
-
+	log_trace("Mandando coche al server");
 	return coche;
 }

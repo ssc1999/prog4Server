@@ -5,6 +5,7 @@
 #include <math.h>
 #include "BD/sqlite3.h"
 #include "BD/BD.h"
+#include "Logger/log.h"
 #include "Jerarquia/Comprador/comprador.h"
 #include "Jerarquia/Vendedor/vendedor.h"
 #include "Jerarquia/Ticket/ticket.h"
@@ -32,31 +33,34 @@ int main(int argc, char *argv[])
 	Comprador *comprador;
 	Vendedor* vendedor;
 	sqlite3 *db;
+	FILE *fp ; 
+	fp = fopen("Logger/log.log", "r+");
+	log_add_fp(fp, 0);
 
 	int result = sqlite3_open("BD/BD.sqlite", &db);
 	if (result != SQLITE_OK)
 	{
-		printf("Error opening database\n");
+		log_error("Error opening database\n");
 	}
 
-	printf("\nInitialising Winsock...\n");
+	log_info("Initialising Winsock...\n");
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
 	{
-		printf("Failed. Error Code : %d", WSAGetLastError());
+		log_error("Failed. Error Code : %d", WSAGetLastError());
 		return -1;
 	}
 
-	printf("Initialised.\n");
+	log_info("Initialised.\n");
 
 	// SOCKET creation
 	if ((conn_socket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET)
 	{
-		printf("Could not create socket : %d", WSAGetLastError());
+		log_error("Could not create socket : %d", WSAGetLastError());
 		WSACleanup();
 		return -1;
 	}
 
-	printf("Socket created.\n");
+	log_info("Socket created.\n");
 
 	server.sin_addr.s_addr = inet_addr(SERVER_IP);
 	server.sin_family = AF_INET;
@@ -66,72 +70,84 @@ int main(int argc, char *argv[])
 	if (bind(conn_socket, (struct sockaddr *)&server,
 			 sizeof(server)) == SOCKET_ERROR)
 	{
-		printf("Bind failed with error code: %d", WSAGetLastError());
+		log_error("Bind failed with error code: %d", WSAGetLastError());
 		closesocket(conn_socket);
 		WSACleanup();
 		return -1;
 	}
 
-	printf("Bind done.\n");
+	log_info("Bind done.\n");
 
 	// LISTEN to incoming connections (socket server moves to listening mode)
 	if (listen(conn_socket, 1) == SOCKET_ERROR)
 	{
-		printf("Listen failed with error code: %d", WSAGetLastError());
+		log_error("Listen failed with error code: %d", WSAGetLastError());
 		closesocket(conn_socket);
 		WSACleanup();
 		return -1;
 	}
 
 	// ACCEPT incoming connections (server keeps waiting for them)
-	printf("Waiting for incoming connections...\n");
+	log_info("Waiting for incoming connections...\n");
 	int stsize = sizeof(struct sockaddr);
 	comm_socket = accept(conn_socket, (struct sockaddr *)&client, &stsize);
 	// Using comm_socket is able to send/receive data to/from connected client
 	if (comm_socket == INVALID_SOCKET)
 	{
-		printf("accept failed with error code : %d", WSAGetLastError());
+		log_error("accept failed with error code : %d", WSAGetLastError());
 		closesocket(conn_socket);
 		WSACleanup();
 		return -1;
 	}
-	printf("Incomming connection from: %s (%d)\n", inet_ntoa(client.sin_addr),
+	log_info("Incomming connection from: %s (%d)\n", inet_ntoa(client.sin_addr),
 		   ntohs(client.sin_port));
 
 	// Closing the listening sockets (is not going to be used anymore)
 	closesocket(conn_socket);
 
 	// SEND and RECEIVE data (CLIENT/SERVER PROTOCOL)
-	printf("Waiting for incoming commands from client... \n");
+	log_info("Waiting for incoming commands from client... \n");
 
 	do
 	{
+		
+		
 		comprador = (Comprador *)malloc(sizeof(Comprador));
 		vendedor = (Vendedor *)malloc(sizeof(Vendedor));
 		coche = (Coche *)malloc(sizeof(Coche));
 
 		recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 		strcpy(opcion, recvBuff);
-
+		log_info("Servidor esperando instrucciones");
 		if (strcmp(opcion, "login") == 0)
 		{
+			log_info("Proceso de login iniciado");
+
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(usuario, recvBuff);
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(contrasenya, recvBuff);
+
+			log_info("Usuario y contrasenya recibidos");
+
 			resultado = login(db, usuario, contrasenya);
 			// COMPRADOR
 			if (resultado == 1)
 			{
 				strcpy(sendBuff, "comprador");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
+				log_info("Comprador logueado con exito");
+				log_trace("user(%s) - password(%s)", usuario, contrasenya);
 				do
 				{
 					recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 					strcpy(opcion2, recvBuff);
+					log_info("Servidor esperando instrucciones");
+
 					if (strcmp(opcion2, "comprarCoches") == 0)
 					{
-						
+						log_info("Opcion comprarCoches seleccionada");
 						// crear array dinamico de punteros de coches
 						coches = (Coche**) malloc(20*sizeof(Coche*));
 						for (i = 0; i < 20; i++){
@@ -209,41 +225,41 @@ int main(int argc, char *argv[])
 					}
 					else if (strcmp(opcion2, "miCoche") == 0)
 					{
-						
+						log_info("Opcion miCoche seleccionada");
 						coche = getCoche(db, usuario);
 		
 						strcpy(sendBuff, coche->matricula);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s\n", coche->matricula);
+				
 
 						strcpy(sendBuff, coche->marca);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s\n", coche->marca);
+				
 
 						strcpy(sendBuff, coche->modelo);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s\n", coche->modelo);
+				
 
 						itoa(coche->automatico, sendBuff, 10);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%i\n", coche->automatico);
+				
 
 						itoa(coche->plazas, sendBuff, 10);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%i\n", coche->plazas);
+				
 
 						itoa(coche->anyoFabricacion, sendBuff, 10);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%i\n",coche->anyoFabricacion);
+				
 						
 						itoa(coche->precio, sendBuff, 10);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%i\n", coche->precio);
-
-						
-					}
+				
+						log_trace("Coche-> matricula(%s), marca(%s), modelo(%s), automatico(%i), plazas(%i), anyoFabricacion(%i), precio(%i)", coche->matricula, coche->marca, coche->modelo, coche->automatico, coche->plazas, coche->anyoFabricacion, coche->precio);
+										}
 					else if (strcmp(opcion2, "miTicket") == 0)
 					{
+						log_info("Opcion miTicket seleccionada");
 						ticket = getTicket(db, usuario);
 
 						strcpy(sendBuff, ticket->nomComprador);
@@ -258,10 +274,12 @@ int main(int argc, char *argv[])
 						strcpy(sendBuff, ticket->fechaCompra);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						printf("%s", ticket->fechaCompra);
-						
+
+						log_trace("Ticket-> nomComprador(%s), nomUsuario(%s), matricula(%s), fechaCompra(%s)", ticket->nomComprador, ticket->nomUsuario, ticket->matricula, ticket->fechaCompra);	
 					}
 					else if (strcmp(opcion2, "verPerfil") == 0)
 					{
+						log_info("Opcion verPerfil seleccionada");
 						comprador = getComprador(db, usuario);
 
 						strcpy(sendBuff, comprador->usuario);
@@ -280,8 +298,10 @@ int main(int argc, char *argv[])
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						printf("%s", comprador->cuentaBancaria);
 
+						log_trace("Comprador-> usuario(%s), nombre(%s), dni(%s), email(%s), cuentaBancaria(%s)", comprador->usuario, comprador->nombre, comprador->dni, comprador->email, comprador->cuentaBancaria);
 					}
 				} while (strcmp(opcion2, "cerrarSesion") != 0);
+				log_info("Sesion cerrada con exito");
 			}
 			
 			else if (resultado == 2)
@@ -289,15 +309,22 @@ int main(int argc, char *argv[])
 				strcpy(sendBuff, "vendedor");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
+				log_info("Vendedor logueado con exito");
+				log_trace("user(%s) - password(%s)", usuario, contrasenya);
 				do
 				{
 					recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 					strcpy(opcion2, recvBuff);
+					log_info("Servidor esperando instrucciones");
+
 					if (strcmp(opcion2, "verPerfil") == 0)
 					{
+						log_info("Opcion verPerfil seleccionada");
+
 						if(strcmp(vendedor->usuario, usuario) != 0){
 							vendedor = getVendedor(db, usuario);
 						}
+
 						printf("%s", vendedor->usuario);
 						strcpy(sendBuff, vendedor->usuario);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
@@ -311,39 +338,51 @@ int main(int argc, char *argv[])
 						strcpy(sendBuff, vendedor->email);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						
+						log_trace("Vendedor-> usuario(%s), nombre(%s), dni(%s), email(%s)", vendedor->usuario,  vendedor->nombre, vendedor->dni, vendedor->email);
 						/* code */
 					}
 					else if (strcmp(opcion2, "verDinero") == 0)
 					{
+						log_info("Opcion verDinero seleccionada");
+
 						if(strcmp(vendedor->usuario, usuario) != 0){
 							vendedor = getVendedor(db, usuario);
 						}
 						itoa(vendedor->sueldo, sendBuff, 10);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
+						log_trace("Sueldo-> %i", vendedor->sueldo);
 					}
 					else if (strcmp(opcion2, "verNumeroVentas") == 0)
 					{
+						log_info("Opcion verNumeroVentas seleccionada");
+
 						if(strcmp(vendedor->usuario, usuario) != 0){
 							vendedor = getVendedor(db, usuario);
 						}
 						itoa(vendedor->numVentas, sendBuff, 10);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+
+						log_trace("Numero de ventas-> %i", vendedor->numVentas);
 					}
 				} while (strcmp(opcion2, "cerrarSesion") != 0);
+				log_info("Sesion cerrada con exito");
 			}
 			else// mirar
 			{
 				strcpy(sendBuff, "erroneos");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+				log_error("Usuario y/o contrasenya incorrecto/s");
 			}
 		}else if (strcmp(opcion, "registro") == 0)
 		{
+			log_info("Proceso de registro iniciado");
 			recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 			strcpy(opcion2, recvBuff);
 
 			if (strcmp(opcion2, "1") == 0)
 			{
-				
+				log_info("Iniciando registro de comprador");
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 				strcpy(nombre, recvBuff);
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
@@ -359,18 +398,17 @@ int main(int argc, char *argv[])
 
 				if (registrarComprador(db, usuario, contrasenya, nombre, dni, email, cuentaBancaria) == 1)
 				{
-					printf("Comprador agregado con exito a la BD");
-					
+					log_info("Comprador agregado con exito a la base de datos");
 				}
 				else
 				{
-					printf("Error al agregar al comprador a la BD");
+					log_error("Error intentando agregar el comprador a la base de datos");
 				}
 			fflush(stdout);
 			}
 			else if (strcmp(opcion2, "2") == 0)
 			{
-				
+				log_info("Iniciando registro de vendedor");
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 				strcpy(nombre, recvBuff);
 				recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
@@ -384,16 +422,16 @@ int main(int argc, char *argv[])
 
 				if (registrarVendedor(db, usuario, contrasenya, nombre, dni, email) == 1)
 				{
-					printf("Vendedor agregado con exito a la BD");
+					log_info("Vendedor agregado con exito a la base de datos");
 				}
 				else
 				{
-					printf("Error al agregar al vendedor a la BD");
+					log_error("Error intentando agregar el vendedor a la base de datos");
 				}
 			}
 			else
 			{
-				// mando error a cliente
+				log_error("Error introduciendo la opcion");
 				strcpy(sendBuff, "error");
 				send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 			}
@@ -407,6 +445,8 @@ int main(int argc, char *argv[])
 	// CLOSING the sockets and cleaning Winsock...
 	closesocket(comm_socket);
 	WSACleanup();
+	log_info("Programa cerrado con exito");
+	fclose(fp);
 
 	return 0;
 }

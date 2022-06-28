@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "../../Logger/log.h"
 #include "../../BD/BD.h"
 #include "../../BD/sqlite3.h"
 //#include "../../Log/logger.h"
@@ -16,7 +16,9 @@ void imprimirTicket(Ticket ticket) {
 }
 
 Ticket* getTicket(sqlite3 *db, char usuario[20]){
-	Ticket *ticket = getTicketBD(db, usuario);
-	printf("Nombre del comprador: %s", ticket->nomComprador);
+	log_trace("Consultando ticket a la BD");
+	Ticket *ticket = (Ticket *)malloc(sizeof(Ticket));
+	ticket = getTicketBD(db, usuario);
+	log_trace("Mandando ticket al server");
 	return ticket;
 }

@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "../../Logger/log.h"
 #include "../../BD/BD.h"
 #include "../../BD/sqlite3.h"
 //#include "../../Log/logger.h"
@@ -25,9 +25,10 @@ void comprarCoche(sqlite3 *db, char matricula[20], char usuario[20]){
 }
 
 Comprador* getComprador(sqlite3 *db, char usuario[20]){
+	log_trace("Consultando comprador a la BD");
 	Comprador* comprador = (Comprador*) malloc(sizeof(Comprador));
 	comprador = getCompradorBD(db, usuario);
-	printf("%s", comprador->usuario);
+	log_trace("Mandando comprador al server");
 	return comprador;
 }
 
