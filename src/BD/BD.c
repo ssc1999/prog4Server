@@ -129,29 +129,69 @@ int login(sqlite3 *db, char usuario[20], char contrasenya[20])
 // UPDATE
 int updateCocheBD(sqlite3 *db, char matricula[10], char usuario[10])
 {
+	log_trace("Dentro metodo updateCoche BD");
+	sqlite3_stmt *stmt;
+
+	char sql[] = "update coche SET (comprado, usuarioComprador) values(1, ?) where matricula = ?";
+
+	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+
+	log_trace("Preparando sentencia INSERT");
+
+	result = sqlite3_bind_text(stmt, 1, usuario, strlen(usuario), SQLITE_STATIC);
+	result = sqlite3_bind_text(stmt, 1, matricula, strlen(matricula), SQLITE_STATIC);
+	result = sqlite3_step(stmt);
+	log_trace("Atributos anyadidos a la sentencia");
+
+	result = sqlite3_finalize(stmt);
+
+	log_trace("Sentencia UPDATE finalizada");
+	log_trace("Saliendo del metodo updateCoche BD");
+}
+
+int updateVendedorBD(sqlite3 *db, int precioCoche, char usuario[10])
+{
+	log_trace("Dentro metodo updateVendedor BD");
+	sqlite3_stmt *stmt;
+
+	char sql[100];
+	sprintf(sql, "update usuario SET (sueldo) values(%i) where usuario = ?", precioCoche);
+	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
+
+	log_trace("Preparando sentencia INSERT");
+
+	result = sqlite3_bind_text(stmt, 1, usuario, strlen(usuario), SQLITE_STATIC);
+	result = sqlite3_step(stmt);
+	log_trace("Atributos anyadidos a la sentencia");
+
+	result = sqlite3_finalize(stmt);
+
+	log_trace("Sentencia UPDATE finalizada");
+	log_trace("Saliendo del metodo updateVendedor BD");
 }
 
 // INSERT
-int insertTicket(sqlite3 *db, Ticket *ticket)
+int insertTicketBD(sqlite3 *db, Ticket *ticket)
 {
+	log_trace("Dentro metodo insertTicket BD");
 	sqlite3_stmt *stmt;
 
 	char sql[] = "insert into ticket (nomUsuario, nomComprador, matricula, fechaCompra) values( ?, ?, ?, ?)";
 
 	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
 
+	log_trace("Preparando sentencia INSERT");
+
 	result = sqlite3_bind_text(stmt, 1, ticket->nomComprador, strlen(ticket->nomComprador), SQLITE_STATIC);
-
 	result = sqlite3_bind_text(stmt, 1, ticket->nomUsuario, strlen(ticket->nomUsuario), SQLITE_STATIC);
-
 	result = sqlite3_bind_text(stmt, 1, ticket->matricula, strlen(ticket->matricula), SQLITE_STATIC);
-
 	result = sqlite3_bind_text(stmt, 1, ticket->fechaCompra, strlen(ticket->fechaCompra), SQLITE_STATIC);
-
+	result = sqlite3_step(stmt);
+	log_trace("Atributos anyadidos a la sentencia");
 	result = sqlite3_finalize(stmt);
 
-	printf("Prepared statement finalized (SELECT)\n");
-
+	log_trace("Sentencia INSERT finalizada");
+	log_trace("Saliendo del metodo insertTicket BD");
 	return 0;
 }
 
@@ -272,7 +312,7 @@ Ticket *getTicketBD(sqlite3 *db, char usuario[20])
 	char usuarioTemp[20], contrasenyaTemp[20];
 	Ticket* t = (Ticket*) malloc(sizeof(Ticket));
 
-	char sql[] = "select nomComprador, matricula, fechaCompra, nomUsuario from ticket where nomUsuario = ?";
+	char sql[] = "select nomComprador, matricula, fechaCompra, nomUsuario, precio from ticket where nomUsuario = ?";
 
 	int result = sqlite3_prepare_v2(db, sql, strlen(sql) + 1, &stmt, NULL);
 
@@ -290,8 +330,9 @@ Ticket *getTicketBD(sqlite3 *db, char usuario[20])
 		strcpy(t->matricula, (char *)sqlite3_column_text(stmt, 1));
 		strcpy(t->fechaCompra, (char *)sqlite3_column_text(stmt, 2));
 		strcpy(t->nomUsuario, (char *)sqlite3_column_text(stmt, 3));
+		t->precio = sqlite3_column_int(stmt, 4);
 	}
-	
+
 	result = sqlite3_finalize(stmt);
 
 	log_trace("Sentencia SELECT finalizada");

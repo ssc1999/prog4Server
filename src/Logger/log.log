@@ -1,354 +1,321 @@
-2022-06-28 18:26:21 INFO  main.c:46: Initialising Winsock...
+2022-06-29 02:38:00 INFO  main.c:46: Initialising Winsock...
 
-2022-06-28 18:26:21 INFO  main.c:53: Initialised.
+2022-06-29 02:38:00 INFO  main.c:53: Initialised.
 
-2022-06-28 18:26:21 INFO  main.c:63: Socket created.
+2022-06-29 02:38:00 INFO  main.c:63: Socket created.
 
-2022-06-28 18:26:21 INFO  main.c:79: Bind done.
+2022-06-29 02:38:00 INFO  main.c:79: Bind done.
 
-2022-06-28 18:26:21 INFO  main.c:91: Waiting for incoming connections...
+2022-06-29 02:38:00 INFO  main.c:91: Waiting for incoming connections...
 
-2022-06-28 18:26:22 INFO  main.c:103: Incomming connection from: 127.0.0.1 (51832)
+2022-06-29 02:38:03 INFO  main.c:103: Incomming connection from: 127.0.0.1 (64400)
 
-2022-06-28 18:26:22 INFO  main.c:109: Waiting for incoming commands from client... 
+2022-06-29 02:38:03 INFO  main.c:109: Waiting for incoming commands from client... 
 
-2022-06-28 18:26:23 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 18:26:23 INFO  main.c:124: Proceso de login iniciado
-2022-06-28 18:26:25 INFO  main.c:131: Usuario y contrasenya recibidos
-2022-06-28 18:26:25 TRACE BD/BD.c:92: Dentro metodo login BD
-2022-06-28 18:26:25 TRACE BD/BD.c:101: Preparando sentencia SELECT
-2022-06-28 18:26:25 TRACE BD/BD.c:105: Atributos anyadidos a la sentencia
-2022-06-28 18:26:25 TRACE BD/BD.c:117: Sentencia SELECT finalizada
-2022-06-28 18:26:25 TRACE BD/BD.c:125: Saliendo del metodo login BD
-2022-06-28 18:26:25 ERROR main.c:375: Usuario y/o contrasenya incorrecto/s
-2022-06-28 18:26:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 18:26:34 INFO  main.c:448: Programa cerrado con exito
-22-06-28 18:16:28 INFO  main.c:228: Opcion miCoche seleccionada
-2022-06-28 18:16:28 TRACE BD/BD.c:234: Dentro metodo getCoche BD
-2022-06-28 18:16:28 TRACE BD/BD.c:242: Preparando sentencia SELECT
-2022-06-28 18:16:28 TRACE BD/BD.c:246: Atributos anyadidos a la sentencia
-2022-06-28 18:16:28 TRACE BD/BD.c:264: Sentencia SELECT finalizada
-2022-06-28 18:16:28 TRACE BD/BD.c:265: Saliendo del metodo getCoche BD
-2022-06-28 18:16:28 TRACE main.c:258: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
-2022-06-28 18:21:16 INFO  main.c:146: Servidor esperando instrucciones
-2022-06-28 18:21:16 INFO  main.c:304: Sesion cerrada con exito
-2022-06-28 18:21:20 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 18:21:20 INFO  main.c:448: Programa cerrado con exito
-in.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
-2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
+2022-06-29 02:38:03 INFO  main.c:121: Servidor esperando instrucciones
+2022-06-29 02:38:03 INFO  main.c:124: Proceso de login iniciado
+2022-06-29 02:38:06 INFO  main.c:131: Usuario y contrasenya recibidos
+2022-06-29 02:38:06 TRACE BD/BD.c:92: Dentro metodo login BD
+2022-06-29 02:38:06 TRACE BD/BD.c:101: Preparando sentencia SELECT
+2022-06-29 02:38:06 TRACE BD/BD.c:105: Atributos anyadidos a la sentencia
+2022-06-29 02:38:06 TRACE BD/BD.c:117: Sentencia SELECT finalizada
+2022-06-29 02:38:06 TRACE BD/BD.c:125: Saliendo del metodo login BD
+2022-06-29 02:38:06 ERROR main.c:376: Usuario y/o contrasenya incorrecto/s
+2022-06-29 02:38:07 INFO  main.c:121: Servidor esperando instrucciones
+2022-06-29 02:38:07 INFO  main.c:124: Proceso de login iniciado
+2022-06-29 02:38:10 INFO  main.c:131: Usuario y contrasenya recibidos
+2022-06-29 02:38:10 TRACE BD/BD.c:92: Dentro metodo login BD
+2022-06-29 02:38:10 TRACE BD/BD.c:101: Preparando sentencia SELECT
+2022-06-29 02:38:10 TRACE BD/BD.c:105: Atributos anyadidos a la sentencia
+2022-06-29 02:38:10 TRACE BD/BD.c:117: Sentencia SELECT finalizada
+2022-06-29 02:38:10 TRACE BD/BD.c:121: usuario y contrasenya coinciden
+2022-06-29 02:38:10 INFO  main.c:140: Comprador logueado con exito
+2022-06-29 02:38:10 TRACE main.c:141: user(andrea) - password(1234)
+2022-06-29 02:38:12 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:38:12 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:38:12 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:38:12 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:38:12 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:38:12 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:38:12 TRACE BD/BD.c:338: Sentencia SELECT finalizada
+2022-06-29 02:38:12 TRACE BD/BD.c:339: Saliendo del metodo getCoche BD
+2022-06-29 02:38:12 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:38:12 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(100000)
+2022-06-29 02:38:18 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:38:18 INFO  main.c:283: Opcion verPerfil seleccionada
+2022-06-29 02:38:18 TRACE Jerarquia/Comprador/comprador.c:29: Consultando comprador a la BD
+2022-06-29 02:38:18 TRACE BD/BD.c:201: Dentro metodo getComprador BD
+2022-06-29 02:38:18 TRACE BD/BD.c:210: Preparando sentencia SELECT
+2022-06-29 02:38:18 TRACE BD/BD.c:214: Atributos anyadidos a la sentencia
+2022-06-29 02:38:18 TRACE BD/BD.c:229: Sentencia SELECT finalizada
+2022-06-29 02:38:18 TRACE BD/BD.c:230: Saliendo del metodo getComprador BD
+2022-06-29 02:38:18 TRACE Jerarquia/Comprador/comprador.c:32: Mandando comprador al server
+2022-06-29 02:38:18 TRACE main.c:302: Comprador-> usuario(andrea), nombre(andrea
+), dni(1242314), email(andreamail), cuentaBancaria(435435)
+2022-06-29 02:38:20 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:38:20 INFO  main.c:305: Sesion cerrada con exito
+2022-06-29 02:38:29 INFO  main.c:121: Servidor esperando instrucciones
+2022-06-29 02:38:29 INFO  main.c:449: Programa cerrado con exito
+c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:33 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:33 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:33 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:33 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:33 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:33 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:33 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:33 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:34 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:34 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:34 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:34 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:34 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:34 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:34 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:34 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:34 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:34 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(6029380)
+2022-06-29 02:35:35 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:35 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:35 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:35 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:35 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:35 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:35 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:35 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:35 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:35 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:35 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:35 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:35 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:35 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:35 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:35 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:35 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:35 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:35 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:35 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(14086536)
+2022-06-29 02:35:36 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:36 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:36 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:36 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:36 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:36 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:36 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:36 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:36 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:36 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:37 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:37 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:37 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:37 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:37 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:37 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:37 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:37 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:37 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:37 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+2022-06-29 02:35:39 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:39 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:39 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:39 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:39 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:39 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:39 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:39 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:39 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:39 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:40 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:40 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:40 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:40 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:40 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:40 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:40 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:40 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:40 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:40 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+2022-06-29 02:35:41 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:41 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:41 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:41 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:41 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:41 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:41 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:41 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:41 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:41 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:41 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:41 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:41 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:41 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:41 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:41 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:41 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:41 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:41 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:41 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(6029380)
+2022-06-29 02:35:43 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:43 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:43 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:43 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:43 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:43 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:43 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:43 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:43 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:43 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:43 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:43 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:43 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:43 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:43 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:43 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:43 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:43 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:43 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:43 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+2022-06-29 02:35:45 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:45 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:45 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:45 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:45 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:45 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:45 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:45 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:45 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:45 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:45 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:45 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:45 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:45 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:45 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:45 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:45 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:45 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:45 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:45 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+2022-06-29 02:35:46 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:46 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:46 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:46 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:46 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:46 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:46 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:46 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:46 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:46 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:46 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:46 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:46 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:46 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:46 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:46 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:46 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:46 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:46 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:46 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+2022-06-29 02:35:47 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:47 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:47 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:47 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:47 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:47 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:47 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:47 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:47 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:47 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:47 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:47 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:47 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:47 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:47 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:47 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:47 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:47 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:47 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:47 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+2022-06-29 02:35:48 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:48 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:48 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:48 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:48 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:48 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:48 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:48 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:48 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:48 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:49 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:49 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:49 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:49 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:49 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:49 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:49 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:49 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:49 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:49 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+2022-06-29 02:35:49 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:49 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:49 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:49 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:49 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:49 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:49 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:49 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:49 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:49 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:50 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:50 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:50 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:50 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:50 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:50 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:50 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:50 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:50 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:50 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+2022-06-29 02:35:54 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:54 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:35:54 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:35:54 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:35:54 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:35:54 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:35:54 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:35:54 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:35:54 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:35:54 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:35:55 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:35:55 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:35:55 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:35:55 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:35:55 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:35:55 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:35:55 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:35:55 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:35:55 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:35:55 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+2022-06-29 02:36:29 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:36:29 INFO  main.c:227: Opcion miCoche seleccionada
+2022-06-29 02:36:29 TRACE Jerarquia/Coche/coche.c:34: Consultando coche a la BD
+2022-06-29 02:36:29 TRACE BD/BD.c:274: Dentro metodo getCoche BD
+2022-06-29 02:36:29 TRACE BD/BD.c:282: Preparando sentencia SELECT
+2022-06-29 02:36:29 TRACE BD/BD.c:286: Atributos anyadidos a la sentencia
+2022-06-29 02:36:29 TRACE BD/BD.c:302: Sentencia SELECT finalizada
+2022-06-29 02:36:29 TRACE BD/BD.c:303: Saliendo del metodo getCoche BD
+2022-06-29 02:36:29 TRACE Jerarquia/Coche/coche.c:37: Mandando coche al server
+2022-06-29 02:36:29 TRACE main.c:257: Coche-> matricula(3425439Ferrari), marca(Ferrari), modelo(Spider), automatico(0), plazas(4), anyoFabricacion(2015), precio(100000)
+2022-06-29 02:36:30 INFO  main.c:146: Servidor esperando instrucciones
+2022-06-29 02:36:30 INFO  main.c:261: Opcion miTicket seleccionada
+2022-06-29 02:36:30 TRACE Jerarquia/Ticket/ticket.c:20: Consultando ticket a la BD
+2022-06-29 02:36:30 TRACE BD/BD.c:310: Dentro metodo getCoche BD
+2022-06-29 02:36:30 TRACE BD/BD.c:319: Preparando sentencia SELECT
+2022-06-29 02:36:30 TRACE BD/BD.c:323: Atributos anyadidos a la sentencia
+2022-06-29 02:36:30 TRACE BD/BD.c:337: Sentencia SELECT finalizada
+2022-06-29 02:36:30 TRACE BD/BD.c:338: Saliendo del metodo getCoche BD
+2022-06-29 02:36:30 TRACE Jerarquia/Ticket/ticket.c:23: Mandando ticket al server
+2022-06-29 02:36:30 TRACE main.c:279: Ticket-> nomComprador(Andrea ), nomUsuario(andrea), matricula(3425439), fechaCompra(2022/26/06), precio(0)
+ 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
 2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
 2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones
 2022-06-28 17:58:34 INFO  main.c:121: Servidor esperando instrucciones

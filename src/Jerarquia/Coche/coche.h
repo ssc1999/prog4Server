@@ -16,5 +16,6 @@ typedef struct {
 void imprimirCoche(Coche* coche);
 void copiarCoches(Coche** cocheOrigen, Coche** cocheDestino);
 Coche* getCoche(sqlite3 *db, char usuario[20]);
+void updateCoche(sqlite3 *db, char matricula[20], char usuario[20]);
 
 #endif /* COCHE_H_ */

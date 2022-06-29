@@ -37,3 +37,9 @@ Coche *getCoche(sqlite3 *db, char usuario[20]){
 	log_trace("Mandando coche al server");
 	return coche;
 }
+
+void updateCoche(sqlite3 *db, char matricula[20], char usuario[20]){
+	log_trace("Mandando update coche a la BD");
+	updateCocheBD(db, matricula, usuario);
+	log_trace("Coche editado con exito a la BD");
+}

@@ -13,7 +13,9 @@ int login(sqlite3 *db, char usuario[], char contrasenya[20]);
 // UPDATE
 int updateCocheBD(sqlite3 *db, char matricula[20], char usuario[20]); // para cuando lo compremos
 // INSERT
-int insertTicket(sqlite3 *db, Ticket *ticket);
+int insertTicketBD(sqlite3 *db, Ticket *ticket);
+// INSERT
+int updateVendedorBD(sqlite3 *db, int precioCoche, char usuario[10]);
 // SELECT
 Comprador* getCompradorBD(sqlite3 *db, char usuario[20]);
 // SELECT

@@ -147,14 +147,19 @@ int main(int argc, char *argv[])
 
 					if (strcmp(opcion2, "comprarCoches") == 0)
 					{
+						/////////////////////////////////////////////////////////////////////////
+						// funciona mal por el devolver coches, esta comentado en el cliente
+						// lo que lo prosigue funciona correctamente, todo el metodo de compra
+						// se puede ver en el metodo comprarCoche en coche.c
+						/////////////////////////////////////////////////////////////////////////
 						log_info("Opcion comprarCoches seleccionada");
 						// crear array dinamico de punteros de coches
-						coches = (Coche**) malloc(20*sizeof(Coche*));
-						for (i = 0; i < 20; i++){
+						coches = (Coche**) malloc(5*sizeof(Coche*));
+						for (i = 0; i < 5; i++){
 							coches[i] = (Coche*) malloc(sizeof(Coche));
 						}
-						copiarCoches(coches,getAllCoches(db));
-						strcpy(sendBuff, "20");
+						coches = getAllCoches(db);
+						strcpy(sendBuff, "5");
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 						// guardar array de coches que devuelve la bd
 						
@@ -164,7 +169,7 @@ int main(int argc, char *argv[])
 						}
 
 						// mandar coches (todos sus atributos) al cliente con un for
-						for(i = 0; i < 20; i++){
+						for(i = 0; i < 5; i++){
 							strcpy(sendBuff, coches[i]->matricula);
 							printf("%s", sendBuff);
 							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
@@ -198,24 +203,23 @@ int main(int argc, char *argv[])
 						recv(comm_socket, recvBuff, sizeof(recvBuff), 0);
 						strcpy(fechaCompra, recvBuff);
 
-						// mandar nombreComprador
-						// strcpy(nomComprador, getNombreComprador(db, usuario));
-						// strcpy(sendBuff,nomComprador);
-						// send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						//conseguir nombreComprador
+						strcpy(nomComprador, getNombreComprador(db, usuario));
+						strcpy(sendBuff,nomComprador);
 						
-						// // crear ticket y meterlo en la bd
-						// strcpy(ticket->matricula, matricula);
-						// strcpy(ticket->nomUsuario, usuario);
-						// strcpy(ticket->nomComprador, nomComprador);
-						// strcpy(ticket->fechaCompra, fechaCompra);
+						// crear ticket y meterlo en la bd
+						strcpy(ticket->matricula, matricula);
+						strcpy(ticket->nomUsuario, usuario);
+						strcpy(ticket->nomComprador, nomComprador);
+						strcpy(ticket->fechaCompra, fechaCompra);
 
-						// if(comprarCoche(db, ticket) == 0){
-						// 	strcpy(sendBuff,"OK");
-						// 	send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						// }else{
-						// 	strcpy(sendBuff,"Error");
-						// 	send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						// }
+						if(comprarCoche(db, ticket) == 0){
+							strcpy(sendBuff,"OK");
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						}else{
+							strcpy(sendBuff,"Error");
+							send(comm_socket, sendBuff, sizeof(sendBuff), 0);
+						}
 						/* code */
 						for (i = 0; i < 20; i++){
 							free(coches[i]);
@@ -264,18 +268,20 @@ int main(int argc, char *argv[])
 
 						strcpy(sendBuff, ticket->nomComprador);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s", ticket->nomComprador);
+						
 						strcpy(sendBuff, ticket->nomUsuario);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s", ticket->nomUsuario);
+						
 						strcpy(sendBuff, ticket->matricula);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s", ticket->matricula);
+						
 						strcpy(sendBuff, ticket->fechaCompra);
 						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
-						printf("%s", ticket->fechaCompra);
+						
+						itoa(ticket->precio, sendBuff, 10);
+						send(comm_socket, sendBuff, sizeof(sendBuff), 0);
 
-						log_trace("Ticket-> nomComprador(%s), nomUsuario(%s), matricula(%s), fechaCompra(%s)", ticket->nomComprador, ticket->nomUsuario, ticket->matricula, ticket->fechaCompra);	
+						log_trace("Ticket-> nomComprador(%s), nomUsuario(%s), matricula(%s), fechaCompra(%s), precio(%i)", ticket->nomComprador, ticket->nomUsuario, ticket->matricula, ticket->fechaCompra, ticket->precio);	
 					}
 					else if (strcmp(opcion2, "verPerfil") == 0)
 					{

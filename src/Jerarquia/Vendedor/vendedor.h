@@ -17,5 +17,5 @@ typedef struct
 
 void imprimirVendedor(Vendedor vendedor);
 Vendedor* getVendedor(sqlite3 *db, char usuario[20]);
-
+void updateVendedor(sqlite3 *db, int precioCoche, char usuario[20]);
 #endif /* VENDEDOR_H_ */

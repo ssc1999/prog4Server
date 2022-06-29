@@ -13,6 +13,7 @@ void imprimirTicket(Ticket ticket) {
 	printf("Nombre usuario: %s\n", ticket.nomUsuario);
 	printf("Matr�cula: %s\n", ticket.matricula);
 	printf("Fecha compra: %s\n", ticket.fechaCompra);
+	printf("Precio: %i\n", ticket.precio);
 }
 
 Ticket* getTicket(sqlite3 *db, char usuario[20]){
@@ -21,4 +22,10 @@ Ticket* getTicket(sqlite3 *db, char usuario[20]){
 	ticket = getTicketBD(db, usuario);
 	log_trace("Mandando ticket al server");
 	return ticket;
+}
+
+void insertTicket(sqlite3 *db, Ticket *ticket){
+	log_trace("Mandando insertar ticket a la BD");
+	insertTicketBD(db, ticket);
+	log_trace("Ticket anyadido con exito a la BD");
 }
